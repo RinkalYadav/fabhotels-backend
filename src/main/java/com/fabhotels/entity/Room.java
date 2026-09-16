@@ -3,6 +3,8 @@ package com.fabhotels.entity;
 import com.fabhotels.enums.RoomStatus;
 import com.fabhotels.enums.RoomType;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,4 +58,11 @@ public class Room {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private RoomStatus status = RoomStatus.AVAILABLE;
+
+    @OneToMany(
+            mappedBy = "room",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<RoomAvailability> availabilities = new ArrayList<>();
 }

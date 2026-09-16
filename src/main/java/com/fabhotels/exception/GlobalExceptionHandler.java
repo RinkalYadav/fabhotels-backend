@@ -74,4 +74,48 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(errors);
     }
+
+    @ExceptionHandler(AvailabilityNotFoundException.class)
+    public ResponseEntity<Map<String, String>>
+    handleAvailabilityNotFound(
+            AvailabilityNotFoundException exception
+    ) {
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("error", exception.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
+
+    @ExceptionHandler(DuplicateAvailabilityException.class)
+    public ResponseEntity<Map<String, String>>
+    handleDuplicateAvailability(
+            DuplicateAvailabilityException exception
+    ) {
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("error", exception.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(response);
+    }
+    @ExceptionHandler(InvalidDateRangeException.class)
+    public ResponseEntity<Map<String, String>>
+    handleInvalidDateRange(
+            InvalidDateRangeException exception
+    ) {
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("error", exception.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
 }
