@@ -2,7 +2,8 @@ package com.fabhotels.exception;
 
 public class HotelNotFoundException extends RuntimeException {
 
-    public HotelNotFoundException(String message) {
-        super(message);
+    public HotelNotFoundException(Long hotelId) {
+
+        super("Hotel not found with id: " + hotelId);
     }
 }

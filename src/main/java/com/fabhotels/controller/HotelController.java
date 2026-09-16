@@ -1,7 +1,7 @@
 package com.fabhotels.controller;
 
-import com.fabhotels.dto.CreateHotelRequest;
-import com.fabhotels.dto.HotelResponse;
+import com.fabhotels.dto.request.CreateHotelRequest;
+import com.fabhotels.dto.response.HotelResponse;
 import com.fabhotels.service.HotelService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

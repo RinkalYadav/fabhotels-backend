@@ -1,7 +1,7 @@
 package com.fabhotels.service;
 
-import com.fabhotels.dto.CreateHotelRequest;
-import com.fabhotels.dto.HotelResponse;
+import com.fabhotels.dto.request.CreateHotelRequest;
+import com.fabhotels.dto.response.HotelResponse;
 
 import java.util.List;
 

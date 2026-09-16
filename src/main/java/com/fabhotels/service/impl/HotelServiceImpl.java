@@ -1,16 +1,17 @@
-package com.fabhotels.service;
+package com.fabhotels.service.impl;
 
-import com.fabhotels.dto.CreateHotelRequest;
-import com.fabhotels.dto.HotelResponse;
+import com.fabhotels.dto.request.CreateHotelRequest;
+import com.fabhotels.dto.response.HotelResponse;
 import com.fabhotels.entity.Hotel;
 import com.fabhotels.exception.HotelNotFoundException;
 import com.fabhotels.repository.HotelRepository;
+import com.fabhotels.service.HotelService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class HotelServiceImpl implements HotelService{
+public class HotelServiceImpl implements HotelService {
 
     private final HotelRepository hotelRepository;
 
@@ -38,9 +39,7 @@ public class HotelServiceImpl implements HotelService{
     public HotelResponse getHotelById(Long id) {
 
         Hotel hotel = hotelRepository.findById(id)
-                .orElseThrow(() -> new HotelNotFoundException(
-                        "Hotel not found with id: " + id
-                ));
+                .orElseThrow(() -> new HotelNotFoundException(id));
 
         return mapToResponse(hotel);
     }
