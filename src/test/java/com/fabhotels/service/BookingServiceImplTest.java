@@ -16,6 +16,7 @@ import com.fabhotels.exception.InvalidBookingDateException;
 import com.fabhotels.exception.RoomNotAvailableException;
 import com.fabhotels.exception.RoomNotFoundException;
 import com.fabhotels.repository.BookingRepository;
+import com.fabhotels.repository.PricingRepository;
 import com.fabhotels.repository.RoomAvailabilityRepository;
 import com.fabhotels.repository.RoomRepository;
 import com.fabhotels.service.impl.BookingServiceImpl;
@@ -48,6 +49,9 @@ class BookingServiceImplTest {
 
     @Mock
     private RoomAvailabilityRepository roomAvailabilityRepository;
+
+    @Mock
+    private PricingRepository pricingRepository;
 
     @InjectMocks
     private BookingServiceImpl bookingService;
@@ -123,6 +127,15 @@ class BookingServiceImplTest {
         when(roomAvailabilityRepository.findByRoomIdAndDate(
                 1L, LocalDate.of(2026, 10, 12)))
                 .thenReturn(Optional.of(availability12));
+
+        when(
+                pricingRepository
+                        .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
+                                anyLong(),
+                                any(LocalDate.class),
+                                any(LocalDate.class)
+                        )
+        ).thenReturn(Optional.empty());
 
         when(bookingRepository.save(any(Booking.class)))
                 .thenAnswer(invocation -> {
@@ -467,6 +480,15 @@ class BookingServiceImplTest {
                     return booking;
                 });
 
+        when(
+                pricingRepository
+                        .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
+                                anyLong(),
+                                any(LocalDate.class),
+                                any(LocalDate.class)
+                        )
+        ).thenReturn(Optional.empty());
+
         BookingResponse response =
                 bookingService.createBooking(request);
 
@@ -598,6 +620,15 @@ class BookingServiceImplTest {
 
         when(roomRepository.findById(1L))
                 .thenReturn(Optional.of(room));
+
+        when(
+                pricingRepository
+                        .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
+                                anyLong(),
+                                any(LocalDate.class),
+                                any(LocalDate.class)
+                        )
+        ).thenReturn(Optional.empty());
 
         when(bookingRepository
                 .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(

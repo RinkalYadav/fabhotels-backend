@@ -3,6 +3,7 @@ package com.fabhotels.service.impl;
 import com.fabhotels.dto.request.CreateBookingRequest;
 import com.fabhotels.dto.response.BookingResponse;
 import com.fabhotels.entity.Booking;
+import com.fabhotels.entity.Pricing;
 import com.fabhotels.entity.Room;
 import com.fabhotels.entity.RoomAvailability;
 import com.fabhotels.enums.AvailabilityStatus;
@@ -14,6 +15,7 @@ import com.fabhotels.exception.InvalidBookingDateException;
 import com.fabhotels.exception.RoomNotAvailableException;
 import com.fabhotels.exception.RoomNotFoundException;
 import com.fabhotels.repository.BookingRepository;
+import com.fabhotels.repository.PricingRepository;
 import com.fabhotels.repository.RoomAvailabilityRepository;
 import com.fabhotels.repository.RoomRepository;
 import com.fabhotels.service.BookingService;
@@ -31,15 +33,17 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final RoomRepository roomRepository;
     private final RoomAvailabilityRepository roomAvailabilityRepository;
+    private final PricingRepository pricingRepository;
 
     public BookingServiceImpl(
             BookingRepository bookingRepository,
             RoomRepository roomRepository,
-            RoomAvailabilityRepository roomAvailabilityRepository) {
+            RoomAvailabilityRepository roomAvailabilityRepository, PricingRepository pricingRepository) {
 
         this.bookingRepository = bookingRepository;
         this.roomRepository = roomRepository;
         this.roomAvailabilityRepository = roomAvailabilityRepository;
+        this.pricingRepository = pricingRepository;
     }
 
     // =========================================================
@@ -82,17 +86,11 @@ public class BookingServiceImpl implements BookingService {
         );
 
         // 7. Calculate number of nights
-        long numberOfNights = ChronoUnit.DAYS.between(
+        BigDecimal totalAmount = calculateTotalAmount(
+                room,
                 request.getCheckIn(),
                 request.getCheckOut()
         );
-
-        // 8. Calculate total amount
-        BigDecimal totalAmount =
-                room.getPricePerNight()
-                        .multiply(
-                                BigDecimal.valueOf(numberOfNights)
-                        );
 
         // 9. Create booking
         Booking booking = new Booking();
@@ -382,5 +380,34 @@ public class BookingServiceImpl implements BookingService {
                 booking.getStatus(),
                 booking.getCreatedAt()
         );
+    }
+
+    private BigDecimal calculateTotalAmount(
+            Room room,
+            LocalDate checkIn,
+            LocalDate checkOut) {
+
+        BigDecimal totalAmount = BigDecimal.ZERO;
+
+        LocalDate date = checkIn;
+
+        while (date.isBefore(checkOut)) {
+
+            BigDecimal nightlyPrice =
+                    pricingRepository
+                            .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
+                                    room.getId(),
+                                    date,
+                                    date
+                            )
+                            .map(Pricing::getPricePerNight)
+                            .orElse(room.getPricePerNight());
+
+            totalAmount = totalAmount.add(nightlyPrice);
+
+            date = date.plusDays(1);
+        }
+
+        return totalAmount;
     }
 }

@@ -173,4 +173,40 @@ public class GlobalExceptionHandler {
                 .badRequest()
                 .body(ex.getMessage());
     }
+
+    @ExceptionHandler(PricingNotFoundException.class)
+    public ResponseEntity<String> handlePricingNotFound(
+            PricingNotFoundException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(DuplicatePricingException.class)
+    public ResponseEntity<String> handleDuplicatePricing(
+            DuplicatePricingException ex) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidPricingDateException.class)
+    public ResponseEntity<String> handleInvalidPricingDate(
+            InvalidPricingDateException ex) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidPricingAmountException.class)
+    public ResponseEntity<String> handleInvalidPricingAmount(
+            InvalidPricingAmountException ex) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
 }
