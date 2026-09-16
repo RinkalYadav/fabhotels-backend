@@ -118,4 +118,23 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(response);
     }
+
+    @ExceptionHandler(InvalidSearchParameterException.class)
+    public ResponseEntity<Map<String, String>>
+    handleInvalidSearchParameter(
+            InvalidSearchParameterException exception
+    ) {
+
+        Map<String, String> response =
+                new HashMap<>();
+
+        response.put(
+                "error",
+                exception.getMessage()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
 }
