@@ -137,4 +137,40 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(response);
     }
+
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<String> handleBookingNotFound(
+            BookingNotFoundException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidBookingDateException.class)
+    public ResponseEntity<String> handleInvalidBookingDate(
+            InvalidBookingDateException ex) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(RoomNotAvailableException.class)
+    public ResponseEntity<String> handleRoomNotAvailable(
+            RoomNotAvailableException ex) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(GuestCapacityExceededException.class)
+    public ResponseEntity<String> handleGuestCapacityExceeded(
+            GuestCapacityExceededException ex) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
 }

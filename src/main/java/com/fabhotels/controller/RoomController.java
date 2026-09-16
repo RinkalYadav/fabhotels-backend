@@ -1,6 +1,7 @@
 package com.fabhotels.controller;
 
 import com.fabhotels.dto.request.CreateRoomRequest;
+import com.fabhotels.dto.response.BookingResponse;
 import com.fabhotels.dto.response.RoomResponse;
 import com.fabhotels.service.RoomService;
 import jakarta.validation.Valid;
@@ -9,15 +10,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import com.fabhotels.dto.response.BookingResponse;
+import com.fabhotels.service.BookingService;
 
 @RestController
 @RequestMapping("/api")
 public class RoomController {
 
     private final RoomService roomService;
+    private final BookingService bookingService;
 
-    public RoomController(RoomService roomService) {
+    public RoomController(RoomService roomService, BookingService bookingService) {
         this.roomService = roomService;
+        this.bookingService = bookingService;
     }
 
     @PostMapping("/hotels/{hotelId}/rooms")
@@ -51,6 +56,15 @@ public class RoomController {
 
         return ResponseEntity.ok(
                 roomService.getRoomsByHotelId(hotelId)
+        );
+    }
+
+    @GetMapping("/{roomId}/bookings")
+    public ResponseEntity<List<BookingResponse>> getBookingsByRoom(
+            @PathVariable Long roomId) {
+
+        return ResponseEntity.ok(
+                bookingService.getBookingsByRoom(roomId)
         );
     }
 }
