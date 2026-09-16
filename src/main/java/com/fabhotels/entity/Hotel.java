@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -50,5 +53,11 @@ public class Hotel {
 
     private boolean active=true;
 
+    @OneToMany(
+            mappedBy = "hotel",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Room> rooms = new ArrayList<>();
 
 }

@@ -1,4 +1,4 @@
-package com.fabhotels.dto;
+package com.fabhotels.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

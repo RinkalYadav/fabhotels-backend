@@ -1,4 +1,4 @@
-package com.fabhotels.dto;
+package com.fabhotels.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

@@ -1,10 +1,11 @@
 package com.fabhotels.service;
 
-import com.fabhotels.dto.CreateHotelRequest;
-import com.fabhotels.dto.HotelResponse;
+import com.fabhotels.dto.request.CreateHotelRequest;
+import com.fabhotels.dto.response.HotelResponse;
 import com.fabhotels.entity.Hotel;
 import com.fabhotels.exception.HotelNotFoundException;
 import com.fabhotels.repository.HotelRepository;
+import com.fabhotels.service.impl.HotelServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
