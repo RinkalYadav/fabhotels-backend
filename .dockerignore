@@ -1,0 +1,12 @@
+
+.git
+.gitignore
+.idea
+.vscode
+*.iml
+target/surefire-reports
+target/test-classes
+target/maven-status
+target/generated-sources
+target/generated-test-sources
+README.md
