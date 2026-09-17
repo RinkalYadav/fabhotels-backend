@@ -33,7 +33,7 @@ jobs:
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: fabhotels-backend
+          name: fabhotels-backend-jar
           path: target/*.jar
 
   docker-build:
@@ -44,6 +44,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: fabhotels-backend-jar
+          path: target
 
       - name: Build Docker image
         run: docker build -t fabhotels-backend:ci .
