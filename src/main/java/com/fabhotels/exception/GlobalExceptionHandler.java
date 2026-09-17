@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.fabhotels.exception.BookingAlreadyCancelledException;
+import com.fabhotels.exception.InvalidCancellationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -243,6 +245,26 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .badRequest()
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(BookingAlreadyCancelledException.class)
+    public ResponseEntity<String> handleBookingAlreadyCancelled(
+            BookingAlreadyCancelledException ex
+    ) {
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidCancellationException.class)
+    public ResponseEntity<String> handleInvalidCancellation(
+            InvalidCancellationException ex
+    ) {
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(ex.getMessage());
     }
 }
