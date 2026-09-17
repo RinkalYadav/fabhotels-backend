@@ -3,8 +3,8 @@ package com.fabhotels.exception;
 import com.fabhotels.dto.error.ApiErrorResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +22,9 @@ class GlobalExceptionHandlerTest {
         MockHttpServletRequest request =
                 new MockHttpServletRequest();
 
-        request.setRequestURI("/api/bookings/101");
+        request.setRequestURI(
+                "/api/bookings/101"
+        );
 
         ResponseEntity<ApiErrorResponse> response =
                 handler.handleBookingNotFound(
@@ -71,7 +73,9 @@ class GlobalExceptionHandlerTest {
         MockHttpServletRequest request =
                 new MockHttpServletRequest();
 
-        request.setRequestURI("/api/payments");
+        request.setRequestURI(
+                "/api/payments"
+        );
 
         ResponseEntity<ApiErrorResponse> response =
                 handler.handlePaymentAlreadyExists(
@@ -84,7 +88,9 @@ class GlobalExceptionHandlerTest {
                 response.getStatusCode()
         );
 
-        assertNotNull(response.getBody());
+        assertNotNull(
+                response.getBody()
+        );
 
         assertEquals(
                 409,
@@ -94,6 +100,11 @@ class GlobalExceptionHandlerTest {
         assertEquals(
                 "Conflict",
                 response.getBody().getError()
+        );
+
+        assertEquals(
+                "Payment already exists for booking id: 101",
+                response.getBody().getMessage()
         );
     }
 
@@ -108,7 +119,9 @@ class GlobalExceptionHandlerTest {
         MockHttpServletRequest request =
                 new MockHttpServletRequest();
 
-        request.setRequestURI("/api/payments");
+        request.setRequestURI(
+                "/api/payments"
+        );
 
         ResponseEntity<ApiErrorResponse> response =
                 handler.handleInvalidPaymentAmount(
@@ -121,6 +134,10 @@ class GlobalExceptionHandlerTest {
                 response.getStatusCode()
         );
 
+        assertNotNull(
+                response.getBody()
+        );
+
         assertEquals(
                 400,
                 response.getBody().getStatus()
@@ -129,6 +146,11 @@ class GlobalExceptionHandlerTest {
         assertEquals(
                 "Bad Request",
                 response.getBody().getError()
+        );
+
+        assertEquals(
+                "Payment amount must be greater than 0",
+                response.getBody().getMessage()
         );
     }
 }
