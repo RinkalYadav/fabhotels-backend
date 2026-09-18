@@ -17,6 +17,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.slf4j.MDC;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -313,6 +314,16 @@ public class GlobalExceptionHandler {
             String path
     ) {
 
+        String correlationId = MDC.get("correlationId");
+
+        log.warn(
+                "Request failed: status={} correlationId={} path={} message={}",
+                status.value(),
+                correlationId,
+                path,
+                message
+        );
+
         ApiErrorResponse response =
                 buildErrorResponse(
                         status,
@@ -330,13 +341,18 @@ public class GlobalExceptionHandler {
             String message,
             String path
     ) {
+        String correlationId = MDC.get("correlationId");
 
-        return new ApiErrorResponse(
+        ApiErrorResponse response = new ApiErrorResponse(
                 LocalDateTime.now(),
                 status.value(),
                 status.getReasonPhrase(),
                 message,
                 path
         );
+
+        response.setCorrelationId(correlationId);
+
+        return response;
     }
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <!-- ========================= -->
+    <!-- LOG PROPERTIES            -->
+    <!-- ========================= -->
+
+    <property name="LOG_FILE"
+              value="${LOG_FILE:-logs/fabhotels-backend.log}"/>
+
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] [%X{correlationId}] %logger{36} - %msg%n"/>
+
+
+    <!-- ========================= -->
+    <!-- CONSOLE APPENDER          -->
+    <!-- ========================= -->
+
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+    </appender>
+
+
+    <!-- ========================= -->
+    <!-- ROLLING FILE APPENDER     -->
+    <!-- ========================= -->
+
+    <appender name="ROLLING_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>${LOG_FILE}</file>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+            <fileNamePattern>
+                logs/fabhotels-backend.%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+
+            <maxFileSize>10MB</maxFileSize>
+
+            <maxHistory>14</maxHistory>
+
+            <totalSizeCap>200MB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+    </appender>
+
+
+    <!-- ========================= -->
+    <!-- TEST PROFILE               -->
+    <!-- ========================= -->
+
+    <springProfile name="test">
+
+        <root level="WARN">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+    </springProfile>
+
+
+    <!-- ========================= -->
+    <!-- DEFAULT / DEVELOPMENT     -->
+    <!-- ========================= -->
+
+    <springProfile name="default">
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING_FILE"/>
+        </root>
+
+        <logger name="com.fabhotels" level="INFO"/>
+
+        <!-- Avoid noisy SQL logs -->
+        <logger name="org.hibernate.SQL" level="WARN"/>
+
+    </springProfile>
+
+
+    <!-- ========================= -->
+    <!-- PRODUCTION                 -->
+    <!-- ========================= -->
+
+    <springProfile name="prod">
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING_FILE"/>
+        </root>
+
+        <logger name="com.fabhotels" level="INFO"/>
+
+        <!-- Keep Hibernate SQL controlled in production -->
+        <logger name="org.hibernate.SQL" level="WARN"/>
+
+        <logger name="org.hibernate.orm.jdbc.bind" level="WARN"/>
+
+    </springProfile>
+
+</configuration>

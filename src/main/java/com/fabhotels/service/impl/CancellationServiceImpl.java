@@ -22,9 +22,13 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class CancellationServiceImpl implements CancellationService {
+    private static final Logger log =
+            LoggerFactory.getLogger(CancellationServiceImpl.class);
 
     private final BookingRepository bookingRepository;
     private final PaymentRepository paymentRepository;
@@ -46,6 +50,11 @@ public class CancellationServiceImpl implements CancellationService {
             Long bookingId,
             CancelBookingRequest request
     ) {
+
+        log.info(
+                "Processing booking cancellation: bookingId={}",
+                bookingId
+        );
 
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() ->
@@ -83,6 +92,12 @@ public class CancellationServiceImpl implements CancellationService {
 
         // Save cancelled booking
         Booking savedBooking = bookingRepository.save(booking);
+        log.info(
+                "Booking cancelled successfully: bookingId={}, refundAmount={}",
+                savedBooking.getId(),
+                refundAmount
+        );
+
 
         return new CancellationResponse(
                 savedBooking.getId(),

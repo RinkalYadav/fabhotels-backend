@@ -20,9 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
+    private static final Logger log =
+            LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     private final PaymentRepository paymentRepository;
     private final BookingRepository bookingRepository;
@@ -41,6 +45,14 @@ public class PaymentServiceImpl implements PaymentService {
             CreatePaymentRequest request) {
 
         validateRequest(request);
+
+        log.info(
+                "Processing payment: bookingId={}, paymentMethod={}, amount={}",
+                request.getBookingId(),
+                request.getPaymentMethod(),
+                request.getAmount()
+        );
+
 
         Booking booking =
                 bookingRepository.findById(
@@ -92,6 +104,14 @@ public class PaymentServiceImpl implements PaymentService {
 
         Payment savedPayment =
                 paymentRepository.save(payment);
+        log.info(
+                "Payment successful: paymentId={}, bookingId={}, amount={}, method={}",
+                savedPayment.getId(),
+                booking.getId(),
+                savedPayment.getAmount(),
+                savedPayment.getPaymentMethod()
+        );
+
 
         return mapToResponse(savedPayment);
     }
