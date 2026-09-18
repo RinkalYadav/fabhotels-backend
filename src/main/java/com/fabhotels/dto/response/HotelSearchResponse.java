@@ -1,12 +1,26 @@
 package com.fabhotels.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Hotel information returned in search results")
 public class HotelSearchResponse {
 
+    @Schema(description = "Unique hotel ID", example = "1")
     private Long id;
+
+    @Schema(description = "Hotel name", example = "FabHotel Prime")
     private String name;
+
+    @Schema(description = "City where the hotel is located", example = "Bangalore")
     private String city;
+
+    @Schema(description = "State where the hotel is located", example = "Karnataka")
     private String state;
+
+    @Schema(description = "Country where the hotel is located", example = "India")
     private String country;
+
+    @Schema(description = "Whether the hotel is currently active", example = "true")
     private Boolean active;
 
     public HotelSearchResponse() {

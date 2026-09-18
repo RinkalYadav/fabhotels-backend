@@ -1,22 +1,43 @@
 package com.fabhotels.dto.response;
 
 import com.fabhotels.enums.BookingStatus;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Schema(description = "Response containing booking details")
 public class BookingResponse {
 
+    @Schema(description = "Unique booking ID", example = "101")
     private Long id;
+
+    @Schema(description = "ID of the booked room", example = "10")
     private Long roomId;
+
+    @Schema(description = "Name of the guest", example = "Rinkal Yadav")
     private String guestName;
+
+    @Schema(description = "Email address of the guest", example = "rinkal@example.com")
     private String guestEmail;
+
+    @Schema(description = "Check-in date", example = "2026-10-10")
     private LocalDate checkIn;
+
+    @Schema(description = "Check-out date", example = "2026-10-12")
     private LocalDate checkOut;
+
+    @Schema(description = "Number of guests", example = "2")
     private Integer numberOfGuests;
+
+    @Schema(description = "Total booking amount", example = "5000.00")
     private BigDecimal totalAmount;
+
+    @Schema(description = "Current booking status", example = "CONFIRMED")
     private BookingStatus status;
+
+    @Schema(description = "Date and time when the booking was created", example = "2026-09-18T10:30:00")
     private LocalDateTime createdAt;
 
     public BookingResponse() {
