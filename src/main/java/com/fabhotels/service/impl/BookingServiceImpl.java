@@ -26,9 +26,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class BookingServiceImpl implements BookingService {
+    private static final Logger log =
+            LoggerFactory.getLogger(BookingServiceImpl.class);
 
     private final BookingRepository bookingRepository;
     private final RoomRepository roomRepository;
@@ -53,6 +57,14 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public BookingResponse createBooking(CreateBookingRequest request) {
+
+        log.info(
+                "Creating booking: roomId={}, checkIn={}, checkOut={}, guests={}",
+                request != null ? request.getRoomId() : null,
+                request != null ? request.getCheckIn() : null,
+                request != null ? request.getCheckOut() : null,
+                request != null ? request.getNumberOfGuests() : null
+        );
 
         // 1. Validate request
         validateRequest(request);
@@ -107,6 +119,12 @@ public class BookingServiceImpl implements BookingService {
         // 10. Save booking
         Booking savedBooking =
                 bookingRepository.save(booking);
+        log.info(
+                "Booking created successfully: bookingId={}, roomId={}, totalAmount={}",
+                savedBooking.getId(),
+                room.getId(),
+                totalAmount
+        );
 
         // 11. Mark room availability as BOOKED
         updateRoomAvailability(

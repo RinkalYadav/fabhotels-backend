@@ -1,0 +1,671 @@
+2026-09-18 12:37:53.625 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - Starting FabhotelsBackendApplication using Java 17.0.20.1 with PID 15364 (C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend\target\classes started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:37:53.626 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:37:53.867 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18 12:37:53.869 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 0 ms. Found 0 JPA repository interfaces.
+2026-09-18 12:37:53.978 INFO  [restartedMain] [] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-18 12:37:53.978 INFO  [restartedMain] [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-18 12:37:53.978 INFO  [restartedMain] [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-18 12:37:54.010 INFO  [restartedMain] [] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 383 ms
+2026-09-18 12:37:54.066 INFO  [restartedMain] [] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-18 12:37:54.145 INFO  [restartedMain] [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18 12:37:54.149 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2026-09-18 12:37:54.184 INFO  [restartedMain] [] com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c8ea27d
+2026-09-18 12:37:54.185 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2026-09-18 12:37:54.187 INFO  [restartedMain] [] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/fabhotels]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.39
+	Default catalog/schema: fabhotels/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-18 12:37:54.234 INFO  [restartedMain] [] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18 12:37:54.248 INFO  [restartedMain] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:37:54.353 WARN  [restartedMain] [] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18 12:37:54.794 INFO  [restartedMain] [] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-18 12:37:54.794 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - Started FabhotelsBackendApplication in 1.435 seconds (process running for 607.345)
+2026-09-18 12:37:54.794 WARN  [restartedMain] [] o.s.c.events.SpringDocAppInitializer - SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-18 12:37:54.794 WARN  [restartedMain] [] o.s.c.events.SpringDocAppInitializer - SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-18 12:37:54.794 INFO  [restartedMain] [] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-09-18 12:37:58.154 INFO  [File Watcher] [] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 85 class path changes (85 additions, 0 deletions, 0 modifications)
+2026-09-18 12:37:58.157 INFO  [Thread-13] [] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-18 12:37:58.247 INFO  [tomcat-shutdown] [] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-18 12:37:58.249 INFO  [Thread-13] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:37:58.250 INFO  [Thread-13] [] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+2026-09-18 12:37:58.256 INFO  [Thread-13] [] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+2026-09-18 12:37:58.395 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - Starting FabhotelsBackendApplication using Java 17.0.20.1 with PID 15364 (C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend\target\classes started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:37:58.396 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:37:58.791 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18 12:37:58.857 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2026-09-18 12:37:58.993 INFO  [restartedMain] [] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-18 12:37:58.994 INFO  [restartedMain] [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-18 12:37:58.994 INFO  [restartedMain] [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-18 12:37:59.031 INFO  [restartedMain] [] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 632 ms
+2026-09-18 12:37:59.101 INFO  [restartedMain] [] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-18 12:37:59.168 INFO  [restartedMain] [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18 12:37:59.169 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Starting...
+2026-09-18 12:37:59.202 INFO  [restartedMain] [] com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@225eeb6a
+2026-09-18 12:37:59.203 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Start completed.
+2026-09-18 12:37:59.206 INFO  [restartedMain] [] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/fabhotels]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.39
+	Default catalog/schema: fabhotels/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-18 12:37:59.477 INFO  [restartedMain] [] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18 12:37:59.555 INFO  [restartedMain] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:37:59.836 WARN  [restartedMain] [] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18 12:38:00.071 INFO  [restartedMain] [] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-18 12:38:00.075 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - Started FabhotelsBackendApplication in 1.753 seconds (process running for 612.621)
+2026-09-18 12:38:00.075 WARN  [restartedMain] [] o.s.c.events.SpringDocAppInitializer - SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-18 12:38:00.075 WARN  [restartedMain] [] o.s.c.events.SpringDocAppInitializer - SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-18 12:38:00.075 INFO  [restartedMain] [] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-09-18 12:38:00.153 INFO  [http-nio-8080-exec-3] [] o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-18 12:38:00.153 INFO  [http-nio-8080-exec-3] [] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-18 12:38:00.156 INFO  [http-nio-8080-exec-3] [] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-09-18 12:38:00.156 INFO  [http-nio-8080-exec-3] [bbbfe2df-6f93-4b6a-aa23-3c10134cd65f] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels correlationId=bbbfe2df-6f93-4b6a-aa23-3c10134cd65f
+2026-09-18 12:38:00.560 INFO  [http-nio-8080-exec-3] [bbbfe2df-6f93-4b6a-aa23-3c10134cd65f] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels status=200 duration=403ms correlationId=bbbfe2df-6f93-4b6a-aa23-3c10134cd65f
+2026-09-18 12:38:00.604 INFO  [http-nio-8080-exec-1] [8416d357-8bc2-41fd-93f5-57284f1d747c] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/favicon.ico correlationId=8416d357-8bc2-41fd-93f5-57284f1d747c
+2026-09-18 12:38:00.611 ERROR [http-nio-8080-exec-1] [8416d357-8bc2-41fd-93f5-57284f1d747c] c.f.exception.GlobalExceptionHandler - Unexpected error while processing request: /favicon.ico
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at com.fabhotels.config.RequestLoggingFilter.doFilterInternal(RequestLoggingFilter.java:52)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-09-18 12:38:00.614 WARN  [http-nio-8080-exec-1] [8416d357-8bc2-41fd-93f5-57284f1d747c] c.f.exception.GlobalExceptionHandler - Request failed: status=500 correlationId=8416d357-8bc2-41fd-93f5-57284f1d747c path=/favicon.ico message=An unexpected error occurred
+2026-09-18 12:38:00.624 WARN  [http-nio-8080-exec-1] [8416d357-8bc2-41fd-93f5-57284f1d747c] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-09-18 12:38:00.624 INFO  [http-nio-8080-exec-1] [8416d357-8bc2-41fd-93f5-57284f1d747c] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/favicon.ico status=500 duration=20ms correlationId=8416d357-8bc2-41fd-93f5-57284f1d747c
+2026-09-18 12:38:06.214 INFO  [main] [] c.f.controller.BookingControllerTest - Starting BookingControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:06.216 INFO  [main] [] c.f.controller.BookingControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:07.016 INFO  [background-preinit] [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.3.Final
+2026-09-18 12:38:09.917 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:09.918 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:09.921 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 3 ms
+2026-09-18 12:38:09.984 INFO  [main] [] c.f.controller.BookingControllerTest - Started BookingControllerTest in 5.057 seconds (process running for 7.823)
+2026-09-18 12:38:10.152 INFO  [main] [7bfd1cf5-1687-4da5-be26-4a1ec09db513] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/bookings/20 correlationId=7bfd1cf5-1687-4da5-be26-4a1ec09db513
+2026-09-18 12:38:10.468 INFO  [main] [7bfd1cf5-1687-4da5-be26-4a1ec09db513] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/bookings/20 status=200 duration=316ms correlationId=7bfd1cf5-1687-4da5-be26-4a1ec09db513
+2026-09-18 12:38:10.607 INFO  [main] [68b845a8-638f-4ab5-9523-25786f653c10] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/bookings correlationId=68b845a8-638f-4ab5-9523-25786f653c10
+2026-09-18 12:38:10.687 INFO  [main] [68b845a8-638f-4ab5-9523-25786f653c10] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/bookings status=201 duration=80ms correlationId=68b845a8-638f-4ab5-9523-25786f653c10
+2026-09-18 12:38:10.730 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.BookingPaymentControllerTest]: BookingPaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:10.777 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.BookingPaymentControllerTest
+2026-09-18 12:38:10.780 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.BookingPaymentControllerTest]: BookingPaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:10.802 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.BookingPaymentControllerTest
+2026-09-18 12:38:10.813 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:10.878 INFO  [main] [] c.f.c.BookingPaymentControllerTest - Starting BookingPaymentControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:10.879 INFO  [main] [] c.f.c.BookingPaymentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:11.338 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:11.338 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:11.340 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:38:11.353 INFO  [main] [] c.f.c.BookingPaymentControllerTest - Started BookingPaymentControllerTest in 0.54 seconds (process running for 9.193)
+2026-09-18 12:38:11.368 INFO  [main] [719c8d77-11b6-4a66-9d4e-6f97ca5489c1] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/bookings/10/payment correlationId=719c8d77-11b6-4a66-9d4e-6f97ca5489c1
+2026-09-18 12:38:11.379 INFO  [main] [719c8d77-11b6-4a66-9d4e-6f97ca5489c1] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/bookings/10/payment status=200 duration=11ms correlationId=719c8d77-11b6-4a66-9d4e-6f97ca5489c1
+2026-09-18 12:38:11.399 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.CancellationControllerTest]: CancellationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:11.414 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.CancellationControllerTest
+2026-09-18 12:38:11.415 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.CancellationControllerTest]: CancellationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:11.428 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.CancellationControllerTest
+2026-09-18 12:38:11.437 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:11.480 INFO  [main] [] c.f.c.CancellationControllerTest - Starting CancellationControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:11.481 INFO  [main] [] c.f.c.CancellationControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:11.853 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:11.853 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:11.854 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:38:11.864 INFO  [main] [] c.f.c.CancellationControllerTest - Started CancellationControllerTest in 0.428 seconds (process running for 9.704)
+2026-09-18 12:38:11.876 INFO  [main] [ae6a80a4-dfb2-42b5-a944-44235f2835ab] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/bookings/101/cancel correlationId=ae6a80a4-dfb2-42b5-a944-44235f2835ab
+2026-09-18 12:38:11.885 INFO  [main] [ae6a80a4-dfb2-42b5-a944-44235f2835ab] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/bookings/101/cancel status=200 duration=9ms correlationId=ae6a80a4-dfb2-42b5-a944-44235f2835ab
+2026-09-18 12:38:11.902 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.HotelControllerTest]: HotelControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:11.910 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.HotelControllerTest
+2026-09-18 12:38:11.911 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.HotelControllerTest]: HotelControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:11.919 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.HotelControllerTest
+2026-09-18 12:38:11.926 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:11.963 INFO  [main] [] c.f.controller.HotelControllerTest - Starting HotelControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:11.964 INFO  [main] [] c.f.controller.HotelControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:12.300 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:12.300 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:12.303 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 3 ms
+2026-09-18 12:38:12.315 INFO  [main] [] c.f.controller.HotelControllerTest - Started HotelControllerTest in 0.39 seconds (process running for 10.154)
+2026-09-18 12:38:12.329 INFO  [main] [d68f047c-5b5a-46da-a7bc-da52bcf2e65f] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels/1 correlationId=d68f047c-5b5a-46da-a7bc-da52bcf2e65f
+2026-09-18 12:38:12.339 INFO  [main] [d68f047c-5b5a-46da-a7bc-da52bcf2e65f] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels/1 status=200 duration=10ms correlationId=d68f047c-5b5a-46da-a7bc-da52bcf2e65f
+2026-09-18 12:38:12.366 INFO  [main] [1fbe19e5-398d-4a62-9da0-d1756ddadf3d] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels correlationId=1fbe19e5-398d-4a62-9da0-d1756ddadf3d
+2026-09-18 12:38:12.573 INFO  [main] [1fbe19e5-398d-4a62-9da0-d1756ddadf3d] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels status=400 duration=207ms correlationId=1fbe19e5-398d-4a62-9da0-d1756ddadf3d
+2026-09-18 12:38:12.587 INFO  [main] [fd4c09f9-43d6-4f8c-8d34-2de42b05d107] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels/search correlationId=fd4c09f9-43d6-4f8c-8d34-2de42b05d107
+2026-09-18 12:38:12.615 INFO  [main] [fd4c09f9-43d6-4f8c-8d34-2de42b05d107] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels/search status=200 duration=28ms correlationId=fd4c09f9-43d6-4f8c-8d34-2de42b05d107
+2026-09-18 12:38:12.633 INFO  [main] [4c327dbd-77e2-4f4e-9251-c50e62cc4d9e] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels correlationId=4c327dbd-77e2-4f4e-9251-c50e62cc4d9e
+2026-09-18 12:38:12.637 INFO  [main] [4c327dbd-77e2-4f4e-9251-c50e62cc4d9e] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels status=201 duration=4ms correlationId=4c327dbd-77e2-4f4e-9251-c50e62cc4d9e
+2026-09-18 12:38:12.648 INFO  [main] [2351dc1b-edac-4827-91c0-9ce6fa56c4a1] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels correlationId=2351dc1b-edac-4827-91c0-9ce6fa56c4a1
+2026-09-18 12:38:12.654 INFO  [main] [2351dc1b-edac-4827-91c0-9ce6fa56c4a1] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels status=200 duration=6ms correlationId=2351dc1b-edac-4827-91c0-9ce6fa56c4a1
+2026-09-18 12:38:12.666 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PaymentControllerTest]: PaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:12.680 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PaymentControllerTest
+2026-09-18 12:38:12.681 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PaymentControllerTest]: PaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:12.692 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PaymentControllerTest
+2026-09-18 12:38:12.700 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:12.739 INFO  [main] [] c.f.controller.PaymentControllerTest - Starting PaymentControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:12.739 INFO  [main] [] c.f.controller.PaymentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:13.032 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:13.032 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:13.034 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+2026-09-18 12:38:13.050 INFO  [main] [] c.f.controller.PaymentControllerTest - Started PaymentControllerTest in 0.351 seconds (process running for 10.889)
+2026-09-18 12:38:13.063 INFO  [main] [1d8ba5b5-18d5-4657-92df-022f6e400270] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/payments/1 correlationId=1d8ba5b5-18d5-4657-92df-022f6e400270
+2026-09-18 12:38:13.077 INFO  [main] [1d8ba5b5-18d5-4657-92df-022f6e400270] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/payments/1 status=200 duration=14ms correlationId=1d8ba5b5-18d5-4657-92df-022f6e400270
+2026-09-18 12:38:13.095 INFO  [main] [c07ddf3e-c305-4d7e-b7d4-bcb764f4196d] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/payments correlationId=c07ddf3e-c305-4d7e-b7d4-bcb764f4196d
+2026-09-18 12:38:13.111 INFO  [main] [c07ddf3e-c305-4d7e-b7d4-bcb764f4196d] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/payments status=201 duration=16ms correlationId=c07ddf3e-c305-4d7e-b7d4-bcb764f4196d
+2026-09-18 12:38:13.136 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PricingControllerTest]: PricingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:13.161 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PricingControllerTest
+2026-09-18 12:38:13.163 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PricingControllerTest]: PricingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:13.173 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PricingControllerTest
+2026-09-18 12:38:13.182 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:13.226 INFO  [main] [] c.f.controller.PricingControllerTest - Starting PricingControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:13.227 INFO  [main] [] c.f.controller.PricingControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:13.543 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:13.544 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:13.545 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:38:13.555 INFO  [main] [] c.f.controller.PricingControllerTest - Started PricingControllerTest in 0.373 seconds (process running for 11.394)
+2026-09-18 12:38:13.564 INFO  [main] [8e2497ce-1e19-4458-bc14-ca0fbeba7044] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/pricing correlationId=8e2497ce-1e19-4458-bc14-ca0fbeba7044
+2026-09-18 12:38:13.572 INFO  [main] [8e2497ce-1e19-4458-bc14-ca0fbeba7044] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/pricing status=200 duration=8ms correlationId=8e2497ce-1e19-4458-bc14-ca0fbeba7044
+2026-09-18 12:38:13.597 INFO  [main] [fec285ea-d2d1-4e01-9acd-830fd9499bbc] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/pricing/check correlationId=fec285ea-d2d1-4e01-9acd-830fd9499bbc
+2026-09-18 12:38:13.604 INFO  [main] [fec285ea-d2d1-4e01-9acd-830fd9499bbc] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/pricing/check status=200 duration=7ms correlationId=fec285ea-d2d1-4e01-9acd-830fd9499bbc
+2026-09-18 12:38:13.619 INFO  [main] [0084748d-fa58-4e7d-a573-07195a5ca893] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/rooms/10/pricing correlationId=0084748d-fa58-4e7d-a573-07195a5ca893
+2026-09-18 12:38:13.624 INFO  [main] [0084748d-fa58-4e7d-a573-07195a5ca893] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/rooms/10/pricing status=201 duration=5ms correlationId=0084748d-fa58-4e7d-a573-07195a5ca893
+2026-09-18 12:38:13.646 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomAvailabilityControllerTest]: RoomAvailabilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:13.653 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomAvailabilityControllerTest
+2026-09-18 12:38:13.653 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomAvailabilityControllerTest]: RoomAvailabilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:13.662 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomAvailabilityControllerTest
+2026-09-18 12:38:13.670 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:13.705 INFO  [main] [] c.f.c.RoomAvailabilityControllerTest - Starting RoomAvailabilityControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:13.705 INFO  [main] [] c.f.c.RoomAvailabilityControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:13.998 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:13.998 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:13.999 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:38:14.009 INFO  [main] [] c.f.c.RoomAvailabilityControllerTest - Started RoomAvailabilityControllerTest in 0.34 seconds (process running for 11.848)
+2026-09-18 12:38:14.018 INFO  [main] [902e6c19-3f27-4a9d-8401-45aee74e22dc] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/availability/check correlationId=902e6c19-3f27-4a9d-8401-45aee74e22dc
+2026-09-18 12:38:14.029 INFO  [main] [902e6c19-3f27-4a9d-8401-45aee74e22dc] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/availability/check status=200 duration=11ms correlationId=902e6c19-3f27-4a9d-8401-45aee74e22dc
+2026-09-18 12:38:14.043 INFO  [main] [1bd178f4-72e9-44cf-9772-a5d2537f3222] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/availability/range correlationId=1bd178f4-72e9-44cf-9772-a5d2537f3222
+2026-09-18 12:38:14.049 INFO  [main] [1bd178f4-72e9-44cf-9772-a5d2537f3222] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/availability/range status=200 duration=6ms correlationId=1bd178f4-72e9-44cf-9772-a5d2537f3222
+2026-09-18 12:38:14.062 INFO  [main] [b2518699-defa-445b-8543-f1f5a6492b6b] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/rooms/10/availability correlationId=b2518699-defa-445b-8543-f1f5a6492b6b
+2026-09-18 12:38:14.072 INFO  [main] [b2518699-defa-445b-8543-f1f5a6492b6b] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/rooms/10/availability status=201 duration=10ms correlationId=b2518699-defa-445b-8543-f1f5a6492b6b
+2026-09-18 12:38:14.086 INFO  [main] [63193d95-3331-4ad8-934d-7f323b766d03] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/rooms/10/availability correlationId=63193d95-3331-4ad8-934d-7f323b766d03
+2026-09-18 12:38:14.095 INFO  [main] [63193d95-3331-4ad8-934d-7f323b766d03] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/rooms/10/availability status=400 duration=9ms correlationId=63193d95-3331-4ad8-934d-7f323b766d03
+2026-09-18 12:38:14.108 INFO  [main] [f899af4b-034b-4cb2-986a-fa2b8fe56d8a] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/availability correlationId=f899af4b-034b-4cb2-986a-fa2b8fe56d8a
+2026-09-18 12:38:14.110 INFO  [main] [f899af4b-034b-4cb2-986a-fa2b8fe56d8a] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/availability status=200 duration=2ms correlationId=f899af4b-034b-4cb2-986a-fa2b8fe56d8a
+2026-09-18 12:38:14.128 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomControllerTest]: RoomControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:14.143 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomControllerTest
+2026-09-18 12:38:14.146 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomControllerTest]: RoomControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:14.160 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomControllerTest
+2026-09-18 12:38:14.165 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:14.202 INFO  [main] [] c.f.controller.RoomControllerTest - Starting RoomControllerTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:14.202 INFO  [main] [] c.f.controller.RoomControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:14.508 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:38:14.509 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:38:14.510 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:38:14.521 INFO  [main] [] c.f.controller.RoomControllerTest - Started RoomControllerTest in 0.357 seconds (process running for 12.361)
+2026-09-18 12:38:14.530 INFO  [main] [b949a96b-4538-419b-af60-b9c629f1fa90] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/10/bookings correlationId=b949a96b-4538-419b-af60-b9c629f1fa90
+2026-09-18 12:38:14.539 INFO  [main] [b949a96b-4538-419b-af60-b9c629f1fa90] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/10/bookings status=200 duration=9ms correlationId=b949a96b-4538-419b-af60-b9c629f1fa90
+2026-09-18 12:38:14.555 INFO  [main] [2497e016-7b8d-4b90-ab26-918ef68ce89e] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10 correlationId=2497e016-7b8d-4b90-ab26-918ef68ce89e
+2026-09-18 12:38:14.561 INFO  [main] [2497e016-7b8d-4b90-ab26-918ef68ce89e] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10 status=200 duration=6ms correlationId=2497e016-7b8d-4b90-ab26-918ef68ce89e
+2026-09-18 12:38:14.574 INFO  [main] [92c9b98b-3cc8-4941-8494-081f959cd2f0] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels/1/rooms correlationId=92c9b98b-3cc8-4941-8494-081f959cd2f0
+2026-09-18 12:38:14.576 INFO  [main] [92c9b98b-3cc8-4941-8494-081f959cd2f0] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels/1/rooms status=200 duration=2ms correlationId=92c9b98b-3cc8-4941-8494-081f959cd2f0
+2026-09-18 12:38:14.594 INFO  [main] [b601ecd4-bf84-4051-a0b6-1e928b4bfb0f] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels/1/rooms correlationId=b601ecd4-bf84-4051-a0b6-1e928b4bfb0f
+2026-09-18 12:38:14.608 INFO  [main] [b601ecd4-bf84-4051-a0b6-1e928b4bfb0f] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels/1/rooms status=201 duration=14ms correlationId=b601ecd4-bf84-4051-a0b6-1e928b4bfb0f
+2026-09-18 12:38:14.626 INFO  [main] [f5d87d19-bfe2-462e-b4f8-6a29a4edf07a] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels/1/rooms correlationId=f5d87d19-bfe2-462e-b4f8-6a29a4edf07a
+2026-09-18 12:38:14.635 INFO  [main] [f5d87d19-bfe2-462e-b4f8-6a29a4edf07a] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels/1/rooms status=400 duration=9ms correlationId=f5d87d19-bfe2-462e-b4f8-6a29a4edf07a
+2026-09-18 12:38:14.647 WARN  [main] [] c.f.exception.GlobalExceptionHandler - Request failed: status=400 correlationId=null path=/api/payments message=Payment amount must be greater than 0
+2026-09-18 12:38:14.660 WARN  [main] [] c.f.exception.GlobalExceptionHandler - Request failed: status=409 correlationId=null path=/api/payments message=Payment already exists for booking id: 101
+2026-09-18 12:38:14.662 WARN  [main] [] c.f.exception.GlobalExceptionHandler - Request failed: status=404 correlationId=null path=/api/bookings/101 message=Booking not found with id: 101
+2026-09-18 12:38:14.665 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.FabhotelsBackendApplicationTests]: FabhotelsBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:14.681 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.FabhotelsBackendApplicationTests
+2026-09-18 12:38:14.688 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.FabhotelsBackendApplicationTests]: FabhotelsBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:14.690 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.FabhotelsBackendApplicationTests
+2026-09-18 12:38:14.695 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:21.431 INFO  [main] [] c.f.repository.BookingRepositoryTest - Starting BookingRepositoryTest using Java 17.0.20.1 with PID 10852 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:21.431 INFO  [main] [] c.f.repository.BookingRepositoryTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:21.552 INFO  [main] [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18 12:38:21.589 INFO  [main] [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 6 JPA repository interfaces.
+2026-09-18 12:38:21.612 INFO  [main] [] o.s.b.j.t.a.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2026-09-18 12:38:21.673 INFO  [main] [] o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:8f2d591a-c52e-4719-be7d-cb19de28cbed;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-09-18 12:38:21.710 INFO  [main] [] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-18 12:38:21.753 INFO  [main] [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18 12:38:21.812 INFO  [main] [] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:8f2d591a-c52e-4719-be7d-cb19de28cbed]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 8F2D591A-C52E-4719-BE7D-CB19DE28CBED/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-18 12:38:21.950 INFO  [main] [] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18 12:38:21.995 INFO  [main] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:38:22.063 INFO  [main] [] c.f.repository.BookingRepositoryTest - Started BookingRepositoryTest in 0.662 seconds (process running for 19.902)
+2026-09-18 12:38:22.193 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:22.208 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.HotelRepositoryTest
+2026-09-18 12:38:22.208 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:22.221 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.HotelRepositoryTest
+2026-09-18 12:38:22.421 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.PricingRepositoryTest]: PricingRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:22.435 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.PricingRepositoryTest
+2026-09-18 12:38:22.436 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.PricingRepositoryTest]: PricingRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:22.449 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.PricingRepositoryTest
+2026-09-18 12:38:22.552 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.RoomAvailabilityRepositoryTest]: RoomAvailabilityRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:22.562 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.RoomAvailabilityRepositoryTest
+2026-09-18 12:38:22.563 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.RoomAvailabilityRepositoryTest]: RoomAvailabilityRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:22.575 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.RoomAvailabilityRepositoryTest
+2026-09-18 12:38:23.047 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.059 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=null, guests=2
+2026-09-18 12:38:23.063 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-15, guests=2
+2026-09-18 12:38:23.064 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Booking created successfully: bookingId=502, roomId=1, totalAmount=10000.00
+2026-09-18 12:38:23.068 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.069 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Booking created successfully: bookingId=501, roomId=1, totalAmount=6000.00
+2026-09-18 12:38:23.077 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-10, guests=2
+2026-09-18 12:38:23.082 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.083 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Booking created successfully: bookingId=501, roomId=1, totalAmount=6000.00
+2026-09-18 12:38:23.088 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.092 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=-1
+2026-09-18 12:38:23.097 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.113 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.117 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.121 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-09, guests=2
+2026-09-18 12:38:23.126 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=0
+2026-09-18 12:38:23.134 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=null, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.136 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=3
+2026-09-18 12:38:23.139 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.142 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:38:23.232 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.232 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:38:23.235 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.239 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.245 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.248 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.253 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.255 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:38:23.259 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.260 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=6000.00
+2026-09-18 12:38:23.265 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.266 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=3000.0000
+2026-09-18 12:38:23.270 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.274 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.275 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:38:23.283 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:38:23.284 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:38:23.417 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:38:23.418 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Payment successful: paymentId=501, bookingId=101, amount=6000.00, method=UPI
+2026-09-18 12:38:23.426 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:38:23.437 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=5000.00
+2026-09-18 12:38:23.443 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:38:23.449 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:38:23.632 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.SwaggerOpenApiTest]: SwaggerOpenApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:23.635 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.SwaggerOpenApiTest
+2026-09-18 12:38:23.636 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.SwaggerOpenApiTest]: SwaggerOpenApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:38:23.640 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.SwaggerOpenApiTest
+2026-09-18 12:38:23.650 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:38:29.893 INFO  [SpringApplicationShutdownHook] [] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-18 12:38:29.937 INFO  [tomcat-shutdown] [] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-18 12:38:29.940 INFO  [SpringApplicationShutdownHook] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:38:29.940 INFO  [SpringApplicationShutdownHook] [] com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown initiated...
+2026-09-18 12:38:29.943 INFO  [SpringApplicationShutdownHook] [] com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown completed.
+2026-09-18 12:38:33.489 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - Starting FabhotelsBackendApplication using Java 17.0.20.1 with PID 16920 (C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend\target\classes started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:38:33.492 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:38:33.538 INFO  [restartedMain] [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-18 12:38:33.539 INFO  [restartedMain] [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-18 12:38:33.842 INFO  [background-preinit] [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.3.Final
+2026-09-18 12:38:34.300 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18 12:38:34.362 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 6 JPA repository interfaces.
+2026-09-18 12:38:34.804 INFO  [restartedMain] [] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-18 12:38:34.813 INFO  [restartedMain] [] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-18 12:38:34.815 INFO  [restartedMain] [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-18 12:38:34.816 INFO  [restartedMain] [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-18 12:38:34.857 INFO  [restartedMain] [] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1318 ms
+2026-09-18 12:38:34.984 INFO  [restartedMain] [] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-18 12:38:35.032 INFO  [restartedMain] [] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-18 12:38:35.374 INFO  [restartedMain] [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18 12:38:35.399 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-18 12:38:35.623 INFO  [restartedMain] [] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12ec8ce9
+2026-09-18 12:38:35.624 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-18 12:38:35.696 INFO  [restartedMain] [] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/fabhotels]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.39
+	Default catalog/schema: fabhotels/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-18 12:38:36.603 INFO  [restartedMain] [] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18 12:38:36.743 INFO  [restartedMain] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:38:36.810 INFO  [restartedMain] [] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-18 12:38:37.139 WARN  [restartedMain] [] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18 12:38:37.495 INFO  [restartedMain] [] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-18 12:38:37.510 INFO  [restartedMain] [] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-18 12:38:37.516 INFO  [restartedMain] [] c.f.FabhotelsBackendApplication - Started FabhotelsBackendApplication in 4.504 seconds (process running for 4.976)
+2026-09-18 12:38:37.518 WARN  [restartedMain] [] o.s.c.events.SpringDocAppInitializer - SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-18 12:38:37.518 WARN  [restartedMain] [] o.s.c.events.SpringDocAppInitializer - SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-18 12:39:47.519 INFO  [http-nio-8080-exec-1] [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-18 12:39:47.520 INFO  [http-nio-8080-exec-1] [] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-18 12:39:47.523 INFO  [http-nio-8080-exec-1] [] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-09-18 12:39:47.530 INFO  [http-nio-8080-exec-1] [250c4757-1b96-41e1-91e4-d2ef8695314e] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels correlationId=250c4757-1b96-41e1-91e4-d2ef8695314e
+2026-09-18 12:39:47.972 INFO  [http-nio-8080-exec-1] [250c4757-1b96-41e1-91e4-d2ef8695314e] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels status=200 duration=442ms correlationId=250c4757-1b96-41e1-91e4-d2ef8695314e
+2026-09-18 12:39:47.996 INFO  [http-nio-8080-exec-5] [729456f5-d70b-4bea-b18f-4c85e3c3b401] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/favicon.ico correlationId=729456f5-d70b-4bea-b18f-4c85e3c3b401
+2026-09-18 12:39:48.005 ERROR [http-nio-8080-exec-5] [729456f5-d70b-4bea-b18f-4c85e3c3b401] c.f.exception.GlobalExceptionHandler - Unexpected error while processing request: /favicon.ico
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at com.fabhotels.config.RequestLoggingFilter.doFilterInternal(RequestLoggingFilter.java:52)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-09-18 12:39:48.007 WARN  [http-nio-8080-exec-5] [729456f5-d70b-4bea-b18f-4c85e3c3b401] c.f.exception.GlobalExceptionHandler - Request failed: status=500 correlationId=729456f5-d70b-4bea-b18f-4c85e3c3b401 path=/favicon.ico message=An unexpected error occurred
+2026-09-18 12:39:48.029 WARN  [http-nio-8080-exec-5] [729456f5-d70b-4bea-b18f-4c85e3c3b401] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-09-18 12:39:48.029 INFO  [http-nio-8080-exec-5] [729456f5-d70b-4bea-b18f-4c85e3c3b401] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/favicon.ico status=500 duration=33ms correlationId=729456f5-d70b-4bea-b18f-4c85e3c3b401
+2026-09-18 12:40:07.336 INFO  [http-nio-8080-exec-2] [8d5fac66-af7a-4686-ad3e-684c776c3936] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels correlationId=8d5fac66-af7a-4686-ad3e-684c776c3936
+2026-09-18 12:40:07.351 INFO  [http-nio-8080-exec-2] [8d5fac66-af7a-4686-ad3e-684c776c3936] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels status=200 duration=15ms correlationId=8d5fac66-af7a-4686-ad3e-684c776c3936
+2026-09-18 12:42:52.321 INFO  [SpringApplicationShutdownHook] [] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-18 12:42:52.362 INFO  [tomcat-shutdown] [] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-18 12:42:52.366 INFO  [SpringApplicationShutdownHook] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:42:52.369 INFO  [SpringApplicationShutdownHook] [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-18 12:42:52.374 INFO  [SpringApplicationShutdownHook] [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-18 12:43:11.105 INFO  [main] [] c.f.controller.BookingControllerTest - Starting BookingControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:11.107 INFO  [main] [] c.f.controller.BookingControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:12.007 INFO  [background-preinit] [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.3.Final
+2026-09-18 12:43:14.974 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:14.975 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:14.982 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 6 ms
+2026-09-18 12:43:15.106 INFO  [main] [] c.f.controller.BookingControllerTest - Started BookingControllerTest in 4.994 seconds (process running for 7.549)
+2026-09-18 12:43:15.350 INFO  [main] [b522ef47-7dd4-40ad-9619-e3056f800b45] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/bookings/20 correlationId=b522ef47-7dd4-40ad-9619-e3056f800b45
+2026-09-18 12:43:15.721 INFO  [main] [b522ef47-7dd4-40ad-9619-e3056f800b45] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/bookings/20 status=200 duration=371ms correlationId=b522ef47-7dd4-40ad-9619-e3056f800b45
+2026-09-18 12:43:15.843 INFO  [main] [3c3d45cf-1d8b-45d3-9614-4e7062ed11fe] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/bookings correlationId=3c3d45cf-1d8b-45d3-9614-4e7062ed11fe
+2026-09-18 12:43:15.913 INFO  [main] [3c3d45cf-1d8b-45d3-9614-4e7062ed11fe] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/bookings status=201 duration=70ms correlationId=3c3d45cf-1d8b-45d3-9614-4e7062ed11fe
+2026-09-18 12:43:15.948 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.BookingPaymentControllerTest]: BookingPaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:15.962 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.BookingPaymentControllerTest
+2026-09-18 12:43:15.963 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.BookingPaymentControllerTest]: BookingPaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:15.980 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.BookingPaymentControllerTest
+2026-09-18 12:43:15.993 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:16.053 INFO  [main] [] c.f.c.BookingPaymentControllerTest - Starting BookingPaymentControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:16.053 INFO  [main] [] c.f.c.BookingPaymentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:16.465 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:16.466 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:16.467 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:43:16.479 INFO  [main] [] c.f.c.BookingPaymentControllerTest - Started BookingPaymentControllerTest in 0.486 seconds (process running for 8.922)
+2026-09-18 12:43:16.495 INFO  [main] [fc97af85-1039-43a9-ac57-8a57f2663b61] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/bookings/10/payment correlationId=fc97af85-1039-43a9-ac57-8a57f2663b61
+2026-09-18 12:43:16.505 INFO  [main] [fc97af85-1039-43a9-ac57-8a57f2663b61] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/bookings/10/payment status=200 duration=10ms correlationId=fc97af85-1039-43a9-ac57-8a57f2663b61
+2026-09-18 12:43:16.531 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.CancellationControllerTest]: CancellationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:16.544 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.CancellationControllerTest
+2026-09-18 12:43:16.546 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.CancellationControllerTest]: CancellationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:16.555 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.CancellationControllerTest
+2026-09-18 12:43:16.562 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:16.604 INFO  [main] [] c.f.c.CancellationControllerTest - Starting CancellationControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:16.605 INFO  [main] [] c.f.c.CancellationControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:16.935 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:16.935 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:16.937 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:43:16.948 INFO  [main] [] c.f.c.CancellationControllerTest - Started CancellationControllerTest in 0.385 seconds (process running for 9.39)
+2026-09-18 12:43:16.959 INFO  [main] [1e3ed3a5-48c2-4c77-a28a-4b65c45b3617] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/bookings/101/cancel correlationId=1e3ed3a5-48c2-4c77-a28a-4b65c45b3617
+2026-09-18 12:43:16.967 INFO  [main] [1e3ed3a5-48c2-4c77-a28a-4b65c45b3617] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/bookings/101/cancel status=200 duration=8ms correlationId=1e3ed3a5-48c2-4c77-a28a-4b65c45b3617
+2026-09-18 12:43:16.983 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.HotelControllerTest]: HotelControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:16.993 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.HotelControllerTest
+2026-09-18 12:43:16.994 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.HotelControllerTest]: HotelControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:17.005 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.HotelControllerTest
+2026-09-18 12:43:17.013 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:17.049 INFO  [main] [] c.f.controller.HotelControllerTest - Starting HotelControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:17.050 INFO  [main] [] c.f.controller.HotelControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:17.368 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:17.368 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:17.370 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:43:17.381 INFO  [main] [] c.f.controller.HotelControllerTest - Started HotelControllerTest in 0.369 seconds (process running for 9.824)
+2026-09-18 12:43:17.389 INFO  [main] [b819f18b-47a9-4577-952e-5dfc6c5a11d1] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels/1 correlationId=b819f18b-47a9-4577-952e-5dfc6c5a11d1
+2026-09-18 12:43:17.398 INFO  [main] [b819f18b-47a9-4577-952e-5dfc6c5a11d1] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels/1 status=200 duration=9ms correlationId=b819f18b-47a9-4577-952e-5dfc6c5a11d1
+2026-09-18 12:43:17.420 INFO  [main] [9da69228-fb8c-4207-9ae5-72a85fdfe2d5] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels correlationId=9da69228-fb8c-4207-9ae5-72a85fdfe2d5
+2026-09-18 12:43:17.593 INFO  [main] [9da69228-fb8c-4207-9ae5-72a85fdfe2d5] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels status=400 duration=173ms correlationId=9da69228-fb8c-4207-9ae5-72a85fdfe2d5
+2026-09-18 12:43:17.605 INFO  [main] [90250932-e75c-498a-94e8-71ef10014792] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels/search correlationId=90250932-e75c-498a-94e8-71ef10014792
+2026-09-18 12:43:17.632 INFO  [main] [90250932-e75c-498a-94e8-71ef10014792] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels/search status=200 duration=27ms correlationId=90250932-e75c-498a-94e8-71ef10014792
+2026-09-18 12:43:17.646 INFO  [main] [1e29d445-1e19-4f51-a879-450c55a2a60e] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels correlationId=1e29d445-1e19-4f51-a879-450c55a2a60e
+2026-09-18 12:43:17.648 INFO  [main] [1e29d445-1e19-4f51-a879-450c55a2a60e] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels status=201 duration=2ms correlationId=1e29d445-1e19-4f51-a879-450c55a2a60e
+2026-09-18 12:43:17.663 INFO  [main] [7842bc89-7884-4d22-a71c-09172f4a0a4b] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels correlationId=7842bc89-7884-4d22-a71c-09172f4a0a4b
+2026-09-18 12:43:17.671 INFO  [main] [7842bc89-7884-4d22-a71c-09172f4a0a4b] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels status=200 duration=8ms correlationId=7842bc89-7884-4d22-a71c-09172f4a0a4b
+2026-09-18 12:43:17.685 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PaymentControllerTest]: PaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:17.701 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PaymentControllerTest
+2026-09-18 12:43:17.702 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PaymentControllerTest]: PaymentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:17.719 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PaymentControllerTest
+2026-09-18 12:43:17.727 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:17.761 INFO  [main] [] c.f.controller.PaymentControllerTest - Starting PaymentControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:17.762 INFO  [main] [] c.f.controller.PaymentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:18.037 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:18.038 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:18.039 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:43:18.048 INFO  [main] [] c.f.controller.PaymentControllerTest - Started PaymentControllerTest in 0.322 seconds (process running for 10.491)
+2026-09-18 12:43:18.058 INFO  [main] [b04e7fad-b82b-4a5b-b82e-02773e1cf948] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/payments/1 correlationId=b04e7fad-b82b-4a5b-b82e-02773e1cf948
+2026-09-18 12:43:18.066 INFO  [main] [b04e7fad-b82b-4a5b-b82e-02773e1cf948] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/payments/1 status=200 duration=8ms correlationId=b04e7fad-b82b-4a5b-b82e-02773e1cf948
+2026-09-18 12:43:18.083 INFO  [main] [9fd9bb07-3c4c-4bc1-be3b-f236040665c3] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/payments correlationId=9fd9bb07-3c4c-4bc1-be3b-f236040665c3
+2026-09-18 12:43:18.095 INFO  [main] [9fd9bb07-3c4c-4bc1-be3b-f236040665c3] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/payments status=201 duration=12ms correlationId=9fd9bb07-3c4c-4bc1-be3b-f236040665c3
+2026-09-18 12:43:18.111 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PricingControllerTest]: PricingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:18.123 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PricingControllerTest
+2026-09-18 12:43:18.124 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.PricingControllerTest]: PricingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:18.131 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.PricingControllerTest
+2026-09-18 12:43:18.138 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:18.176 INFO  [main] [] c.f.controller.PricingControllerTest - Starting PricingControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:18.176 INFO  [main] [] c.f.controller.PricingControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:18.477 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:18.477 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:18.478 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:43:18.487 INFO  [main] [] c.f.controller.PricingControllerTest - Started PricingControllerTest in 0.349 seconds (process running for 10.93)
+2026-09-18 12:43:18.496 INFO  [main] [9c2a8a7b-4760-419b-ba8a-5d99b04cddb9] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/pricing correlationId=9c2a8a7b-4760-419b-ba8a-5d99b04cddb9
+2026-09-18 12:43:18.505 INFO  [main] [9c2a8a7b-4760-419b-ba8a-5d99b04cddb9] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/pricing status=200 duration=9ms correlationId=9c2a8a7b-4760-419b-ba8a-5d99b04cddb9
+2026-09-18 12:43:18.527 INFO  [main] [33b62636-ee4f-42d5-a848-ad63af014efa] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/pricing/check correlationId=33b62636-ee4f-42d5-a848-ad63af014efa
+2026-09-18 12:43:18.534 INFO  [main] [33b62636-ee4f-42d5-a848-ad63af014efa] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/pricing/check status=200 duration=7ms correlationId=33b62636-ee4f-42d5-a848-ad63af014efa
+2026-09-18 12:43:18.546 INFO  [main] [bb45cbf0-21dc-42a2-a30e-6b3378d72020] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/rooms/10/pricing correlationId=bb45cbf0-21dc-42a2-a30e-6b3378d72020
+2026-09-18 12:43:18.550 INFO  [main] [bb45cbf0-21dc-42a2-a30e-6b3378d72020] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/rooms/10/pricing status=201 duration=4ms correlationId=bb45cbf0-21dc-42a2-a30e-6b3378d72020
+2026-09-18 12:43:18.567 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomAvailabilityControllerTest]: RoomAvailabilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:18.580 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomAvailabilityControllerTest
+2026-09-18 12:43:18.581 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomAvailabilityControllerTest]: RoomAvailabilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:18.591 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomAvailabilityControllerTest
+2026-09-18 12:43:18.595 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:18.627 INFO  [main] [] c.f.c.RoomAvailabilityControllerTest - Starting RoomAvailabilityControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:18.628 INFO  [main] [] c.f.c.RoomAvailabilityControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:18.914 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:18.915 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:18.916 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-09-18 12:43:18.922 INFO  [main] [] c.f.c.RoomAvailabilityControllerTest - Started RoomAvailabilityControllerTest in 0.327 seconds (process running for 11.365)
+2026-09-18 12:43:18.929 INFO  [main] [5ca97988-5179-48e0-8bce-a59632d664d5] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/availability/check correlationId=5ca97988-5179-48e0-8bce-a59632d664d5
+2026-09-18 12:43:18.940 INFO  [main] [5ca97988-5179-48e0-8bce-a59632d664d5] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/availability/check status=200 duration=11ms correlationId=5ca97988-5179-48e0-8bce-a59632d664d5
+2026-09-18 12:43:18.953 INFO  [main] [8974ac0c-5e81-41b8-a34b-bffcf5323d62] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/availability/range correlationId=8974ac0c-5e81-41b8-a34b-bffcf5323d62
+2026-09-18 12:43:18.961 INFO  [main] [8974ac0c-5e81-41b8-a34b-bffcf5323d62] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/availability/range status=200 duration=8ms correlationId=8974ac0c-5e81-41b8-a34b-bffcf5323d62
+2026-09-18 12:43:18.975 INFO  [main] [b7da85e6-1c4c-45a6-82e0-0e69f2700e13] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/rooms/10/availability correlationId=b7da85e6-1c4c-45a6-82e0-0e69f2700e13
+2026-09-18 12:43:18.986 INFO  [main] [b7da85e6-1c4c-45a6-82e0-0e69f2700e13] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/rooms/10/availability status=201 duration=11ms correlationId=b7da85e6-1c4c-45a6-82e0-0e69f2700e13
+2026-09-18 12:43:18.996 INFO  [main] [9164fe6e-8d94-49d2-9be9-133c26b1a8f0] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/rooms/10/availability correlationId=9164fe6e-8d94-49d2-9be9-133c26b1a8f0
+2026-09-18 12:43:19.004 INFO  [main] [9164fe6e-8d94-49d2-9be9-133c26b1a8f0] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/rooms/10/availability status=400 duration=8ms correlationId=9164fe6e-8d94-49d2-9be9-133c26b1a8f0
+2026-09-18 12:43:19.014 INFO  [main] [2c44bbbd-f03c-40a9-b189-a50fee71bfb6] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10/availability correlationId=2c44bbbd-f03c-40a9-b189-a50fee71bfb6
+2026-09-18 12:43:19.015 INFO  [main] [2c44bbbd-f03c-40a9-b189-a50fee71bfb6] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10/availability status=200 duration=2ms correlationId=2c44bbbd-f03c-40a9-b189-a50fee71bfb6
+2026-09-18 12:43:19.030 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomControllerTest]: RoomControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:19.041 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomControllerTest
+2026-09-18 12:43:19.044 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.controller.RoomControllerTest]: RoomControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:19.057 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.controller.RoomControllerTest
+2026-09-18 12:43:19.063 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:19.099 INFO  [main] [] c.f.controller.RoomControllerTest - Starting RoomControllerTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:19.099 INFO  [main] [] c.f.controller.RoomControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:19.392 INFO  [main] [] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-09-18 12:43:19.392 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-09-18 12:43:19.394 INFO  [main] [] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+2026-09-18 12:43:19.407 INFO  [main] [] c.f.controller.RoomControllerTest - Started RoomControllerTest in 0.345 seconds (process running for 11.849)
+2026-09-18 12:43:19.415 INFO  [main] [eb51a150-8e60-4c30-9426-0a8c5a7a2e28] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/10/bookings correlationId=eb51a150-8e60-4c30-9426-0a8c5a7a2e28
+2026-09-18 12:43:19.426 INFO  [main] [eb51a150-8e60-4c30-9426-0a8c5a7a2e28] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/10/bookings status=200 duration=11ms correlationId=eb51a150-8e60-4c30-9426-0a8c5a7a2e28
+2026-09-18 12:43:19.449 INFO  [main] [aaaf4fec-89e3-4179-8909-1342a40fd76d] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/rooms/10 correlationId=aaaf4fec-89e3-4179-8909-1342a40fd76d
+2026-09-18 12:43:19.463 INFO  [main] [aaaf4fec-89e3-4179-8909-1342a40fd76d] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/rooms/10 status=200 duration=14ms correlationId=aaaf4fec-89e3-4179-8909-1342a40fd76d
+2026-09-18 12:43:19.480 INFO  [main] [674c70e6-2e5e-4fb7-9b18-4c288aee6e9a] c.f.config.RequestLoggingFilter - Incoming request: method=GET uri=/api/hotels/1/rooms correlationId=674c70e6-2e5e-4fb7-9b18-4c288aee6e9a
+2026-09-18 12:43:19.485 INFO  [main] [674c70e6-2e5e-4fb7-9b18-4c288aee6e9a] c.f.config.RequestLoggingFilter - Completed request: method=GET uri=/api/hotels/1/rooms status=200 duration=5ms correlationId=674c70e6-2e5e-4fb7-9b18-4c288aee6e9a
+2026-09-18 12:43:19.511 INFO  [main] [60f14f4d-2a27-4bdc-b1f5-76d63e003855] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels/1/rooms correlationId=60f14f4d-2a27-4bdc-b1f5-76d63e003855
+2026-09-18 12:43:19.528 INFO  [main] [60f14f4d-2a27-4bdc-b1f5-76d63e003855] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels/1/rooms status=201 duration=16ms correlationId=60f14f4d-2a27-4bdc-b1f5-76d63e003855
+2026-09-18 12:43:19.546 INFO  [main] [3b6f5bac-4a02-4339-92d5-c4ac32206d68] c.f.config.RequestLoggingFilter - Incoming request: method=POST uri=/api/hotels/1/rooms correlationId=3b6f5bac-4a02-4339-92d5-c4ac32206d68
+2026-09-18 12:43:19.556 INFO  [main] [3b6f5bac-4a02-4339-92d5-c4ac32206d68] c.f.config.RequestLoggingFilter - Completed request: method=POST uri=/api/hotels/1/rooms status=400 duration=10ms correlationId=3b6f5bac-4a02-4339-92d5-c4ac32206d68
+2026-09-18 12:43:19.577 WARN  [main] [] c.f.exception.GlobalExceptionHandler - Request failed: status=400 correlationId=null path=/api/payments message=Payment amount must be greater than 0
+2026-09-18 12:43:19.593 WARN  [main] [] c.f.exception.GlobalExceptionHandler - Request failed: status=409 correlationId=null path=/api/payments message=Payment already exists for booking id: 101
+2026-09-18 12:43:19.596 WARN  [main] [] c.f.exception.GlobalExceptionHandler - Request failed: status=404 correlationId=null path=/api/bookings/101 message=Booking not found with id: 101
+2026-09-18 12:43:19.603 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.FabhotelsBackendApplicationTests]: FabhotelsBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:19.619 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.FabhotelsBackendApplicationTests
+2026-09-18 12:43:19.624 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.FabhotelsBackendApplicationTests]: FabhotelsBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:19.626 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.FabhotelsBackendApplicationTests
+2026-09-18 12:43:19.631 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2026-09-18 12:43:25.759 INFO  [main] [] c.f.repository.BookingRepositoryTest - Starting BookingRepositoryTest using Java 17.0.20.1 with PID 6904 (started by LENOVO in C:\Users\LENOVO\Downloads\fabhotels-backend\fabhotels-backend)
+2026-09-18 12:43:25.760 INFO  [main] [] c.f.repository.BookingRepositoryTest - No active profile set, falling back to 1 default profile: "default"
+2026-09-18 12:43:25.897 INFO  [main] [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18 12:43:25.928 INFO  [main] [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 6 JPA repository interfaces.
+2026-09-18 12:43:25.942 INFO  [main] [] o.s.b.j.t.a.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2026-09-18 12:43:25.972 INFO  [main] [] o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:d6d946c6-0489-4fbb-a6bd-dffadab1cd1c;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-09-18 12:43:26.000 INFO  [main] [] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-18 12:43:26.022 INFO  [main] [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18 12:43:26.069 INFO  [main] [] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:d6d946c6-0489-4fbb-a6bd-dffadab1cd1c]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: D6D946C6-0489-4FBB-A6BD-DFFADAB1CD1C/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-18 12:43:26.176 INFO  [main] [] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18 12:43:26.229 INFO  [main] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18 12:43:26.301 INFO  [main] [] c.f.repository.BookingRepositoryTest - Started BookingRepositoryTest in 0.578 seconds (process running for 18.743)
+2026-09-18 12:43:26.436 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:26.454 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.HotelRepositoryTest
+2026-09-18 12:43:26.455 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:26.467 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.HotelRepositoryTest
+2026-09-18 12:43:26.662 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.PricingRepositoryTest]: PricingRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:26.679 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.PricingRepositoryTest
+2026-09-18 12:43:26.681 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.PricingRepositoryTest]: PricingRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:26.693 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.PricingRepositoryTest
+2026-09-18 12:43:26.807 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.RoomAvailabilityRepositoryTest]: RoomAvailabilityRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:26.820 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.RoomAvailabilityRepositoryTest
+2026-09-18 12:43:26.821 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.repository.RoomAvailabilityRepositoryTest]: RoomAvailabilityRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:26.832 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.repository.RoomAvailabilityRepositoryTest
+2026-09-18 12:43:27.316 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.328 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=null, guests=2
+2026-09-18 12:43:27.335 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-15, guests=2
+2026-09-18 12:43:27.336 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Booking created successfully: bookingId=502, roomId=1, totalAmount=10000.00
+2026-09-18 12:43:27.342 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.343 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Booking created successfully: bookingId=501, roomId=1, totalAmount=6000.00
+2026-09-18 12:43:27.353 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-10, guests=2
+2026-09-18 12:43:27.358 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.359 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Booking created successfully: bookingId=501, roomId=1, totalAmount=6000.00
+2026-09-18 12:43:27.364 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.368 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=-1
+2026-09-18 12:43:27.373 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.382 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.388 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.392 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-09, guests=2
+2026-09-18 12:43:27.398 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=0
+2026-09-18 12:43:27.407 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=null, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.412 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=3
+2026-09-18 12:43:27.418 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.423 INFO  [main] [] c.f.service.impl.BookingServiceImpl - Creating booking: roomId=1, checkIn=2026-10-10, checkOut=2026-10-13, guests=2
+2026-09-18 12:43:27.519 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.520 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:43:27.525 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.529 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.535 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.539 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.544 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.545 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:43:27.550 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.550 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=6000.00
+2026-09-18 12:43:27.554 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.556 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=3000.0000
+2026-09-18 12:43:27.560 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.565 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.566 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:43:27.575 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Processing booking cancellation: bookingId=101
+2026-09-18 12:43:27.576 INFO  [main] [] c.f.s.impl.CancellationServiceImpl - Booking cancelled successfully: bookingId=101, refundAmount=0
+2026-09-18 12:43:27.727 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:43:27.728 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Payment successful: paymentId=501, bookingId=101, amount=6000.00, method=UPI
+2026-09-18 12:43:27.744 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:43:27.763 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=5000.00
+2026-09-18 12:43:27.770 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:43:27.777 INFO  [main] [] c.f.service.impl.PaymentServiceImpl - Processing payment: bookingId=101, paymentMethod=UPI, amount=6000.00
+2026-09-18 12:43:27.899 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.SwaggerOpenApiTest]: SwaggerOpenApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:27.902 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.SwaggerOpenApiTest
+2026-09-18 12:43:27.904 INFO  [main] [] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fabhotels.SwaggerOpenApiTest]: SwaggerOpenApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-18 12:43:27.906 INFO  [main] [] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fabhotels.FabhotelsBackendApplication for test class com.fabhotels.SwaggerOpenApiTest
+2026-09-18 12:43:27.910 INFO  [main] [] o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
