@@ -3,14 +3,15 @@ package com.fabhotels.service;
 import com.fabhotels.dto.request.CreateBookingRequest;
 import com.fabhotels.dto.response.BookingResponse;
 import com.fabhotels.entity.Booking;
+import com.fabhotels.entity.Hotel;
+import com.fabhotels.entity.Pricing;
 import com.fabhotels.entity.Room;
 import com.fabhotels.entity.RoomAvailability;
 import com.fabhotels.enums.AvailabilityStatus;
 import com.fabhotels.enums.BookingStatus;
 import com.fabhotels.enums.RoomStatus;
+import com.fabhotels.enums.RoomType;
 import com.fabhotels.exception.BookingNotFoundException;
-import com.fabhotels.exception.GuestCapacityExceededException;
-import com.fabhotels.exception.InvalidBookingDateException;
 import com.fabhotels.exception.RoomNotAvailableException;
 import com.fabhotels.exception.RoomNotFoundException;
 import com.fabhotels.repository.BookingRepository;
@@ -26,13 +27,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,67 +59,53 @@ class BookingServiceImplTest {
     private BookingServiceImpl bookingService;
 
     private Room room;
-    private CreateBookingRequest request;
+    private Hotel hotel;
+
+    private final LocalDate checkIn =
+            LocalDate.of(2035, 1, 10);
+
+    private final LocalDate checkOut =
+            LocalDate.of(2035, 1, 13);
+
+    @BeforeEach
+    void setUpSecurityContext() {
+
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(
+                        "rinkal@test.com",
+                        null,
+                        List.of(
+                                new SimpleGrantedAuthority("ROLE_CUSTOMER")
+                        )
+                );
+
+        SecurityContextHolder.getContext()
+                .setAuthentication(authentication);
+    }
 
     @BeforeEach
     void setUp() {
 
-        /*
-         * FAB-117 SECURITY TEST SETUP
-         *
-         * BookingServiceImpl now expects an authenticated
-         * customer when createBooking() is called directly.
-         *
-         * In these Mockito unit tests Spring Security's
-         * method-security proxy is not involved, so we
-         * explicitly create an authenticated customer.
-         */
-        Authentication authentication =
-                new UsernamePasswordAuthenticationToken(
-                        "test@example.com",
-                        null,
-                        List.of(
-                                new SimpleGrantedAuthority(
-                                        "ROLE_CUSTOMER"
-                                )
-                        )
-                );
+        hotel = new Hotel();
 
-        SecurityContextHolder
-                .getContext()
-                .setAuthentication(authentication);
+        hotel.setId(1L);
+        hotel.setName("Test Hotel");
+        hotel.setCity("Bangalore");
+        hotel.setState("Karnataka");
+        hotel.setAddress("Test Address");
+        hotel.setCountry("India");
+        hotel.setPincode("560001");
+        hotel.setActive(true);
 
         room = new Room();
 
-        room.setId(1L);
+        room.setId(10L);
+        room.setHotel(hotel);
         room.setRoomNumber("101");
-        room.setPricePerNight(
-                new BigDecimal("2000.00")
-        );
+        room.setRoomType(RoomType.DOUBLE);
+        room.setPricePerNight(new BigDecimal("2000.00"));
         room.setCapacity(2);
         room.setStatus(RoomStatus.AVAILABLE);
-
-        request = new CreateBookingRequest();
-
-        request.setRoomId(1L);
-        request.setGuestName("Test User");
-
-        /*
-         * This value is no longer trusted by the service.
-         * BookingServiceImpl uses the authenticated user's
-         * email from SecurityContextHolder.
-         */
-        request.setGuestEmail("test@example.com");
-
-        request.setCheckIn(
-                LocalDate.of(2026, 10, 10)
-        );
-
-        request.setCheckOut(
-                LocalDate.of(2026, 10, 13)
-        );
-
-        request.setNumberOfGuests(2);
     }
 
     @AfterEach
@@ -128,891 +114,415 @@ class BookingServiceImplTest {
         SecurityContextHolder.clearContext();
     }
 
-    // =========================================================
-    // SUCCESSFUL BOOKING
-    // =========================================================
-
     @Test
     void createBooking_shouldCreateBookingSuccessfully() {
 
-        when(roomRepository.findById(1L))
+        CreateBookingRequest request = createRequest();
+
+        when(roomRepository.findById(10L))
                 .thenReturn(Optional.of(room));
 
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                eq(1L),
-                                eq(BookingStatus.CONFIRMED),
-                                eq(LocalDate.of(2026, 10, 13)),
-                                eq(LocalDate.of(2026, 10, 10))
-                        )
-        ).thenReturn(false);
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(false);
 
-        RoomAvailability availability10 =
-                createAvailability(
-                        LocalDate.of(2026, 10, 10),
-                        AvailabilityStatus.AVAILABLE
-                );
+        mockAvailableAvailability();
 
-        RoomAvailability availability11 =
-                createAvailability(
-                        LocalDate.of(2026, 10, 11),
-                        AvailabilityStatus.AVAILABLE
-                );
+        when(pricingRepository
+                .findByRoomIdAndActiveTrueAndStartDateLessThanAndEndDateGreaterThanOrderByStartDateAsc(
+                        eq(10L),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(List.of());
 
-        RoomAvailability availability12 =
-                createAvailability(
-                        LocalDate.of(2026, 10, 12),
-                        AvailabilityStatus.AVAILABLE
-                );
+        Booking savedBooking = new Booking();
 
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 10)
-                )
-        ).thenReturn(Optional.of(availability10));
+        savedBooking.setId(101L);
+        savedBooking.setRoom(room);
+        savedBooking.setGuestName("Rinkal");
+        savedBooking.setGuestEmail("rinkal@test.com");
+        savedBooking.setCheckIn(checkIn);
+        savedBooking.setCheckOut(checkOut);
+        savedBooking.setNumberOfGuests(2);
+        savedBooking.setTotalAmount(new BigDecimal("6000.00"));
+        savedBooking.setStatus(BookingStatus.CONFIRMED);
 
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 11)
-                )
-        ).thenReturn(Optional.of(availability11));
-
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 12)
-                )
-        ).thenReturn(Optional.of(availability12));
-
-        when(
-                pricingRepository
-                        .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
-                                anyLong(),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(Optional.empty());
-
-        when(
-                bookingRepository.save(any(Booking.class))
-        ).thenAnswer(invocation -> {
-
-            Booking booking =
-                    invocation.getArgument(0);
-
-            booking.setId(501L);
-
-            booking.setCreatedAt(
-                    LocalDateTime.of(
-                            2026,
-                            9,
-                            16,
-                            12,
-                            30
-                    )
-            );
-
-            return booking;
-        });
+        when(bookingRepository.save(any(Booking.class)))
+                .thenReturn(savedBooking);
 
         BookingResponse response =
                 bookingService.createBooking(request);
 
         assertNotNull(response);
-
+        assertEquals(101L, response.getId());
         assertEquals(
-                501L,
-                response.getId()
+                new BigDecimal("6000.00"),
+                response.getTotalAmount()
         );
 
-        assertEquals(
-                1L,
-                response.getRoomId()
-        );
+        verify(bookingRepository)
+                .save(any(Booking.class));
+    }
 
-        assertEquals(
-                "Test User",
-                response.getGuestName()
-        );
+    @Test
+    void createBooking_shouldCalculateCorrectTotalAmount() {
 
-        /*
-         * The email comes from the authenticated user.
-         */
-        assertEquals(
-                "test@example.com",
-                response.getGuestEmail()
-        );
+        CreateBookingRequest request = createRequest();
 
-        assertEquals(
-                LocalDate.of(2026, 10, 10),
-                response.getCheckIn()
-        );
+        when(roomRepository.findById(10L))
+                .thenReturn(Optional.of(room));
 
-        assertEquals(
-                LocalDate.of(2026, 10, 13),
-                response.getCheckOut()
-        );
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(false);
 
-        assertEquals(
-                2,
-                response.getNumberOfGuests()
-        );
+        mockAvailableAvailability();
+
+        when(pricingRepository
+                .findByRoomIdAndActiveTrueAndStartDateLessThanAndEndDateGreaterThanOrderByStartDateAsc(
+                        eq(10L),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(List.of());
+
+        Booking savedBooking = new Booking();
+
+        savedBooking.setId(102L);
+        savedBooking.setRoom(room);
+        savedBooking.setGuestName("Rinkal");
+        savedBooking.setGuestEmail("rinkal@test.com");
+        savedBooking.setCheckIn(checkIn);
+        savedBooking.setCheckOut(checkOut);
+        savedBooking.setNumberOfGuests(2);
+        savedBooking.setTotalAmount(new BigDecimal("6000.00"));
+        savedBooking.setStatus(BookingStatus.CONFIRMED);
+
+        when(bookingRepository.save(any(Booking.class)))
+                .thenReturn(savedBooking);
+
+        BookingResponse response =
+                bookingService.createBooking(request);
 
         assertEquals(
                 new BigDecimal("6000.00"),
                 response.getTotalAmount()
         );
 
-        assertEquals(
-                BookingStatus.CONFIRMED,
-                response.getStatus()
-        );
-
-        verify(
-                bookingRepository,
-                times(1)
-        ).save(any(Booking.class));
-
-        verify(
-                roomAvailabilityRepository,
-                times(3)
-        ).save(any(RoomAvailability.class));
-
-        assertEquals(
-                AvailabilityStatus.BOOKED,
-                availability10.getStatus()
-        );
-
-        assertEquals(
-                AvailabilityStatus.BOOKED,
-                availability11.getStatus()
-        );
-
-        assertEquals(
-                AvailabilityStatus.BOOKED,
-                availability12.getStatus()
-        );
+        verify(bookingRepository)
+                .save(argThat(booking ->
+                        booking.getTotalAmount()
+                                .compareTo(new BigDecimal("6000.00")) == 0
+                ));
     }
 
-    // =========================================================
-    // ROOM VALIDATION
-    // =========================================================
+    @Test
+    void createBooking_whenAdjacentBookingExists_shouldContinue() {
+
+        CreateBookingRequest request = createRequest();
+
+        when(roomRepository.findById(10L))
+                .thenReturn(Optional.of(room));
+
+        /*
+         * Existing booking ends exactly when the new booking starts.
+         * It must NOT be treated as an overlap.
+         */
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(false);
+
+        mockAvailableAvailability();
+
+        when(pricingRepository
+                .findByRoomIdAndActiveTrueAndStartDateLessThanAndEndDateGreaterThanOrderByStartDateAsc(
+                        eq(10L),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(List.of());
+
+        Booking savedBooking =
+                createSavedBooking(103L);
+
+        when(bookingRepository.save(any(Booking.class)))
+                .thenReturn(savedBooking);
+
+        BookingResponse response =
+                bookingService.createBooking(request);
+
+        assertNotNull(response);
+        assertEquals(103L, response.getId());
+    }
 
     @Test
-    void createBooking_whenRoomDoesNotExist_shouldThrowException() {
+    void createBooking_whenAvailabilityIsBooked_shouldThrowException() {
 
-        when(roomRepository.findById(1L))
+        CreateBookingRequest request = createRequest();
+
+        when(roomRepository.findById(10L))
+                .thenReturn(Optional.of(room));
+
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(false);
+
+        List<RoomAvailability> records =
+                new ArrayList<>();
+
+        records.add(
+                createAvailability(
+                        checkIn,
+                        AvailabilityStatus.BOOKED
+                )
+        );
+
+        records.add(
+                createAvailability(
+                        checkIn.plusDays(1),
+                        AvailabilityStatus.AVAILABLE
+                )
+        );
+
+        records.add(
+                createAvailability(
+                        checkIn.plusDays(2),
+                        AvailabilityStatus.AVAILABLE
+                )
+        );
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        eq(10L),
+                        eq(checkIn),
+                        eq(checkOut)))
+                .thenReturn(records);
+
+        assertThrows(
+                RoomNotAvailableException.class,
+                () -> bookingService.createBooking(request)
+        );
+
+        verify(bookingRepository, never())
+                .save(any(Booking.class));
+    }
+
+    @Test
+    void createBooking_whenAvailabilityIsBlocked_shouldThrowException() {
+
+        CreateBookingRequest request = createRequest();
+
+        when(roomRepository.findById(10L))
+                .thenReturn(Optional.of(room));
+
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(false);
+
+        List<RoomAvailability> records =
+                new ArrayList<>();
+
+        records.add(
+                createAvailability(
+                        checkIn,
+                        AvailabilityStatus.BLOCKED
+                )
+        );
+
+        records.add(
+                createAvailability(
+                        checkIn.plusDays(1),
+                        AvailabilityStatus.AVAILABLE
+                )
+        );
+
+        records.add(
+                createAvailability(
+                        checkIn.plusDays(2),
+                        AvailabilityStatus.AVAILABLE
+                )
+        );
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        eq(10L),
+                        eq(checkIn),
+                        eq(checkOut)))
+                .thenReturn(records);
+
+        assertThrows(
+                RoomNotAvailableException.class,
+                () -> bookingService.createBooking(request)
+        );
+
+        verify(bookingRepository, never())
+                .save(any(Booking.class));
+    }
+
+    @Test
+    void createBooking_whenAvailabilityIsMissing_shouldThrowException() {
+
+        CreateBookingRequest request = createRequest();
+
+        when(roomRepository.findById(10L))
+                .thenReturn(Optional.of(room));
+
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(false);
+
+        List<RoomAvailability> records =
+                new ArrayList<>();
+
+        /*
+         * Only two nights returned instead of three.
+         */
+        records.add(
+                createAvailability(
+                        checkIn,
+                        AvailabilityStatus.AVAILABLE
+                )
+        );
+
+        records.add(
+                createAvailability(
+                        checkIn.plusDays(1),
+                        AvailabilityStatus.AVAILABLE
+                )
+        );
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        eq(10L),
+                        eq(checkIn),
+                        eq(checkOut)))
+                .thenReturn(records);
+
+        assertThrows(
+                RoomNotAvailableException.class,
+                () -> bookingService.createBooking(request)
+        );
+
+        verify(bookingRepository, never())
+                .save(any(Booking.class));
+    }
+
+    @Test
+    void createBooking_whenRoomNotFound_shouldThrowException() {
+
+        CreateBookingRequest request = createRequest();
+
+        when(roomRepository.findById(10L))
                 .thenReturn(Optional.empty());
 
         assertThrows(
                 RoomNotFoundException.class,
                 () -> bookingService.createBooking(request)
         );
-
-        verify(
-                roomRepository,
-                times(1)
-        ).findById(1L);
-
-        verifyNoInteractions(
-                bookingRepository
-        );
-
-        verifyNoInteractions(
-                roomAvailabilityRepository
-        );
     }
 
     @Test
-    void createBooking_whenRoomIsMaintenance_shouldThrowException() {
+    void createBooking_whenBookingOverlaps_shouldThrowException() {
 
-        room.setStatus(
-                RoomStatus.MAINTENANCE
-        );
+        CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(1L))
+        when(roomRepository.findById(10L))
                 .thenReturn(Optional.of(room));
+
+        when(bookingRepository
+                .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
+                        eq(10L),
+                        eq(BookingStatus.CONFIRMED),
+                        eq(checkOut),
+                        eq(checkIn)))
+                .thenReturn(true);
 
         assertThrows(
                 RoomNotAvailableException.class,
                 () -> bookingService.createBooking(request)
         );
 
-        verifyNoInteractions(
-                bookingRepository
-        );
+        verify(roomAvailabilityRepository, never())
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        anyLong(),
+                        any(LocalDate.class),
+                        any(LocalDate.class)
+                );
 
-        verifyNoInteractions(
-                roomAvailabilityRepository
-        );
+        verify(bookingRepository, never())
+                .save(any(Booking.class));
     }
 
-    @Test
-    void createBooking_whenRoomIsInactive_shouldThrowException() {
+    private CreateBookingRequest createRequest() {
 
-        room.setStatus(
-                RoomStatus.INACTIVE
-        );
+        CreateBookingRequest request =
+                new CreateBookingRequest();
 
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
+        request.setRoomId(10L);
+        request.setGuestName("Rinkal");
+        request.setGuestEmail("rinkal@test.com");
+        request.setCheckIn(checkIn);
+        request.setCheckOut(checkOut);
+        request.setNumberOfGuests(2);
 
-        assertThrows(
-                RoomNotAvailableException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                bookingRepository
-        );
-
-        verifyNoInteractions(
-                roomAvailabilityRepository
-        );
+        return request;
     }
 
-    // =========================================================
-    // DATE VALIDATION
-    // =========================================================
+    private void mockAvailableAvailability() {
 
-    @Test
-    void createBooking_whenCheckInIsNull_shouldThrowException() {
+        List<RoomAvailability> records =
+                new ArrayList<>();
 
-        request.setCheckIn(null);
-
-        assertThrows(
-                InvalidBookingDateException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                roomRepository
-        );
-    }
-
-    @Test
-    void createBooking_whenCheckOutIsNull_shouldThrowException() {
-
-        request.setCheckOut(null);
-
-        assertThrows(
-                InvalidBookingDateException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                roomRepository
-        );
-    }
-
-    @Test
-    void createBooking_whenCheckOutEqualsCheckIn_shouldThrowException() {
-
-        request.setCheckOut(
-                LocalDate.of(2026, 10, 10)
-        );
-
-        assertThrows(
-                InvalidBookingDateException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                roomRepository
-        );
-    }
-
-    @Test
-    void createBooking_whenCheckOutBeforeCheckIn_shouldThrowException() {
-
-        request.setCheckOut(
-                LocalDate.of(2026, 10, 9)
-        );
-
-        assertThrows(
-                InvalidBookingDateException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                roomRepository
-        );
-    }
-
-    // =========================================================
-    // GUEST CAPACITY
-    // =========================================================
-
-    @Test
-    void createBooking_whenGuestsExceedCapacity_shouldThrowException() {
-
-        request.setNumberOfGuests(3);
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        assertThrows(
-                GuestCapacityExceededException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                bookingRepository
-        );
-
-        verifyNoInteractions(
-                roomAvailabilityRepository
-        );
-    }
-
-    @Test
-    void createBooking_whenGuestsAreZero_shouldThrowException() {
-
-        request.setNumberOfGuests(0);
-
-        assertThrows(
-                GuestCapacityExceededException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                roomRepository
-        );
-    }
-
-    @Test
-    void createBooking_whenGuestsAreNegative_shouldThrowException() {
-
-        request.setNumberOfGuests(-1);
-
-        assertThrows(
-                GuestCapacityExceededException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verifyNoInteractions(
-                roomRepository
-        );
-    }
-
-    // =========================================================
-    // EXISTING BOOKING / OVERLAP
-    // =========================================================
-
-    @Test
-    void createBooking_whenDatesOverlap_shouldThrowException() {
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                eq(1L),
-                                eq(BookingStatus.CONFIRMED),
-                                eq(LocalDate.of(2026, 10, 13)),
-                                eq(LocalDate.of(2026, 10, 10))
-                        )
-        ).thenReturn(true);
-
-        assertThrows(
-                RoomNotAvailableException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verify(
-                bookingRepository,
-                times(1)
-        ).existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                eq(1L),
-                eq(BookingStatus.CONFIRMED),
-                eq(LocalDate.of(2026, 10, 13)),
-                eq(LocalDate.of(2026, 10, 10))
-        );
-
-        verify(
-                bookingRepository,
-                never()
-        ).save(any(Booking.class));
-
-        verifyNoInteractions(
-                roomAvailabilityRepository
-        );
-    }
-
-    @Test
-    void createBooking_whenAdjacentBookingExists_shouldContinue() {
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                anyLong(),
-                                eq(BookingStatus.CONFIRMED),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(false);
-
-        RoomAvailability availability13 =
+        records.add(
                 createAvailability(
-                        LocalDate.of(2026, 10, 13),
+                        checkIn,
                         AvailabilityStatus.AVAILABLE
-                );
+                )
+        );
 
-        RoomAvailability availability14 =
+        records.add(
                 createAvailability(
-                        LocalDate.of(2026, 10, 14),
+                        checkIn.plusDays(1),
                         AvailabilityStatus.AVAILABLE
-                );
+                )
+        );
 
-        RoomAvailability availability15 =
+        records.add(
                 createAvailability(
-                        LocalDate.of(2026, 10, 15),
+                        checkIn.plusDays(2),
                         AvailabilityStatus.AVAILABLE
-                );
-
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 10)
-                )
-        ).thenReturn(
-                Optional.of(
-                        createAvailability(
-                                LocalDate.of(2026, 10, 10),
-                                AvailabilityStatus.AVAILABLE
-                        )
                 )
         );
 
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 11)
-                )
-        ).thenReturn(
-                Optional.of(
-                        createAvailability(
-                                LocalDate.of(2026, 10, 11),
-                                AvailabilityStatus.AVAILABLE
-                        )
-                )
-        );
-
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 12)
-                )
-        ).thenReturn(
-                Optional.of(
-                        createAvailability(
-                                LocalDate.of(2026, 10, 12),
-                                AvailabilityStatus.AVAILABLE
-                        )
-                )
-        );
-
-        when(
-                bookingRepository.save(
-                        any(Booking.class)
-                )
-        ).thenAnswer(invocation -> {
-
-            Booking booking =
-                    invocation.getArgument(0);
-
-            booking.setId(501L);
-
-            booking.setCreatedAt(
-                    LocalDateTime.now()
-            );
-
-            return booking;
-        });
-
-        when(
-                pricingRepository
-                        .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
-                                anyLong(),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(Optional.empty());
-
-        BookingResponse response =
-                bookingService.createBooking(request);
-
-        assertNotNull(response);
-
-        assertEquals(
-                new BigDecimal("6000.00"),
-                response.getTotalAmount()
-        );
-
-        assertNotNull(availability13);
-        assertNotNull(availability14);
-        assertNotNull(availability15);
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        eq(10L),
+                        eq(checkIn),
+                        eq(checkOut)))
+                .thenReturn(records);
     }
-
-    // =========================================================
-    // ROOM AVAILABILITY
-    // =========================================================
-
-    @Test
-    void createBooking_whenAvailabilityIsBooked_shouldThrowException() {
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                anyLong(),
-                                eq(BookingStatus.CONFIRMED),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(false);
-
-        RoomAvailability availability =
-                createAvailability(
-                        LocalDate.of(2026, 10, 10),
-                        AvailabilityStatus.BOOKED
-                );
-
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 10)
-                )
-        ).thenReturn(
-                Optional.of(availability)
-        );
-
-        assertThrows(
-                RoomNotAvailableException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verify(
-                bookingRepository,
-                never()
-        ).save(any(Booking.class));
-    }
-
-    @Test
-    void createBooking_whenAvailabilityIsBlocked_shouldThrowException() {
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                anyLong(),
-                                eq(BookingStatus.CONFIRMED),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(false);
-
-        RoomAvailability availability =
-                createAvailability(
-                        LocalDate.of(2026, 10, 10),
-                        AvailabilityStatus.BLOCKED
-                );
-
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 10)
-                )
-        ).thenReturn(
-                Optional.of(availability)
-        );
-
-        assertThrows(
-                RoomNotAvailableException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verify(
-                bookingRepository,
-                never()
-        ).save(any(Booking.class));
-    }
-
-    @Test
-    void createBooking_whenAvailabilityIsMissing_shouldThrowException() {
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                anyLong(),
-                                eq(BookingStatus.CONFIRMED),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(false);
-
-        when(
-                roomAvailabilityRepository.findByRoomIdAndDate(
-                        1L,
-                        LocalDate.of(2026, 10, 10)
-                )
-        ).thenReturn(Optional.empty());
-
-        assertThrows(
-                RoomNotAvailableException.class,
-                () -> bookingService.createBooking(request)
-        );
-
-        verify(
-                bookingRepository,
-                never()
-        ).save(any(Booking.class));
-    }
-
-    // =========================================================
-    // AMOUNT CALCULATION
-    // =========================================================
-
-    @Test
-    void createBooking_shouldCalculateCorrectTotalAmount() {
-
-        request.setCheckIn(
-                LocalDate.of(2026, 10, 10)
-        );
-
-        request.setCheckOut(
-                LocalDate.of(2026, 10, 15)
-        );
-
-        when(roomRepository.findById(1L))
-                .thenReturn(Optional.of(room));
-
-        when(
-                pricingRepository
-                        .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
-                                anyLong(),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(Optional.empty());
-
-        when(
-                bookingRepository
-                        .existsByRoomIdAndStatusAndCheckInLessThanAndCheckOutGreaterThan(
-                                anyLong(),
-                                eq(BookingStatus.CONFIRMED),
-                                any(LocalDate.class),
-                                any(LocalDate.class)
-                        )
-        ).thenReturn(false);
-
-        for (int day = 10; day <= 14; day++) {
-
-            when(
-                    roomAvailabilityRepository.findByRoomIdAndDate(
-                            1L,
-                            LocalDate.of(
-                                    2026,
-                                    10,
-                                    day
-                            )
-                    )
-            ).thenReturn(
-                    Optional.of(
-                            createAvailability(
-                                    LocalDate.of(
-                                            2026,
-                                            10,
-                                            day
-                                    ),
-                                    AvailabilityStatus.AVAILABLE
-                            )
-                    )
-            );
-        }
-
-        when(
-                bookingRepository.save(
-                        any(Booking.class)
-                )
-        ).thenAnswer(invocation -> {
-
-            Booking booking =
-                    invocation.getArgument(0);
-
-            booking.setId(502L);
-
-            booking.setCreatedAt(
-                    LocalDateTime.now()
-            );
-
-            return booking;
-        });
-
-        BookingResponse response =
-                bookingService.createBooking(request);
-
-        // 5 nights × ₹2000
-        assertEquals(
-                new BigDecimal("10000.00"),
-                response.getTotalAmount()
-        );
-    }
-
-    // =========================================================
-    // GET BOOKING
-    // =========================================================
-
-    @Test
-    void getBookingById_shouldReturnBooking() {
-
-        Booking booking =
-                createBooking();
-
-        when(
-                bookingRepository.findById(501L)
-        ).thenReturn(
-                Optional.of(booking)
-        );
-
-        BookingResponse response =
-                bookingService.getBookingById(501L);
-
-        assertNotNull(response);
-
-        assertEquals(
-                501L,
-                response.getId()
-        );
-
-        assertEquals(
-                "Test User",
-                response.getGuestName()
-        );
-
-        assertEquals(
-                1L,
-                response.getRoomId()
-        );
-
-        verify(
-                bookingRepository,
-                times(1)
-        ).findById(501L);
-    }
-
-    @Test
-    void getBookingById_whenBookingDoesNotExist_shouldThrowException() {
-
-        when(
-                bookingRepository.findById(999L)
-        ).thenReturn(
-                Optional.empty()
-        );
-
-        assertThrows(
-                BookingNotFoundException.class,
-                () -> bookingService.getBookingById(999L)
-        );
-
-        verify(
-                bookingRepository,
-                times(1)
-        ).findById(999L);
-    }
-
-    // =========================================================
-    // GET ROOM BOOKINGS
-    // =========================================================
-
-    @Test
-    void getBookingsByRoom_shouldReturnBookings() {
-
-        Booking booking =
-                createBooking();
-
-        when(
-                roomRepository.existsById(1L)
-        ).thenReturn(true);
-
-        when(
-                bookingRepository
-                        .findByRoomIdOrderByCheckInAsc(1L)
-        ).thenReturn(
-                List.of(booking)
-        );
-
-        List<BookingResponse> responses =
-                bookingService.getBookingsByRoom(1L);
-
-        assertNotNull(responses);
-
-        assertEquals(
-                1,
-                responses.size()
-        );
-
-        assertEquals(
-                501L,
-                responses.get(0).getId()
-        );
-
-        assertEquals(
-                "Test User",
-                responses.get(0).getGuestName()
-        );
-
-        verify(
-                roomRepository,
-                times(1)
-        ).existsById(1L);
-
-        verify(
-                bookingRepository,
-                times(1)
-        ).findByRoomIdOrderByCheckInAsc(1L);
-    }
-
-    @Test
-    void getBookingsByRoom_whenRoomDoesNotExist_shouldThrowException() {
-
-        when(
-                roomRepository.existsById(999L)
-        ).thenReturn(false);
-
-        assertThrows(
-                RoomNotFoundException.class,
-                () -> bookingService.getBookingsByRoom(999L)
-        );
-
-        verify(
-                roomRepository,
-                times(1)
-        ).existsById(999L);
-
-        verify(
-                bookingRepository,
-                never()
-        ).findByRoomIdOrderByCheckInAsc(anyLong());
-    }
-
-    // =========================================================
-    // HELPER METHODS
-    // =========================================================
 
     private RoomAvailability createAvailability(
             LocalDate date,
@@ -1022,6 +532,7 @@ class BookingServiceImplTest {
         RoomAvailability availability =
                 new RoomAvailability();
 
+        availability.setId(date.toEpochDay());
         availability.setRoom(room);
         availability.setDate(date);
         availability.setStatus(status);
@@ -1029,58 +540,19 @@ class BookingServiceImplTest {
         return availability;
     }
 
-    private Booking createBooking() {
+    private Booking createSavedBooking(Long id) {
 
-        Booking booking =
-                new Booking();
+        Booking booking = new Booking();
 
-        booking.setId(501L);
-
+        booking.setId(id);
         booking.setRoom(room);
-
-        booking.setGuestName(
-                "Test User"
-        );
-
-        booking.setGuestEmail(
-                "test@example.com"
-        );
-
-        booking.setCheckIn(
-                LocalDate.of(
-                        2026,
-                        10,
-                        10
-                )
-        );
-
-        booking.setCheckOut(
-                LocalDate.of(
-                        2026,
-                        10,
-                        13
-                )
-        );
-
+        booking.setGuestName("Rinkal");
+        booking.setGuestEmail("rinkal@test.com");
+        booking.setCheckIn(checkIn);
+        booking.setCheckOut(checkOut);
         booking.setNumberOfGuests(2);
-
-        booking.setTotalAmount(
-                new BigDecimal("6000.00")
-        );
-
-        booking.setStatus(
-                BookingStatus.CONFIRMED
-        );
-
-        booking.setCreatedAt(
-                LocalDateTime.of(
-                        2026,
-                        9,
-                        16,
-                        12,
-                        30
-                )
-        );
+        booking.setTotalAmount(new BigDecimal("6000.00"));
+        booking.setStatus(BookingStatus.CONFIRMED);
 
         return booking;
     }

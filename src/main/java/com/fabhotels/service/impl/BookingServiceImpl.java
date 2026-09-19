@@ -342,34 +342,40 @@ public class BookingServiceImpl implements BookingService {
             LocalDate checkOut
     ) {
 
-        LocalDate date = checkIn;
+        List<RoomAvailability> records =
+                roomAvailabilityRepository
+                        .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                                roomId,
+                                checkIn,
+                                checkOut
+                        );
 
-        while (date.isBefore(checkOut)) {
-
-            final LocalDate currentDate = date;
-
-            RoomAvailability availability =
-                    roomAvailabilityRepository
-                            .findByRoomIdAndDate(
-                                    roomId,
-                                    currentDate
-                            )
-                            .orElseThrow(() ->
-                                    new RoomNotAvailableException(
-                                            "Room availability is missing for "
-                                                    + currentDate
-                                    ));
-
-            if (availability.getStatus()
-                    != AvailabilityStatus.AVAILABLE) {
-
-                throw new RoomNotAvailableException(
-                        "Room is not available for "
-                                + currentDate
+        long requestedNights =
+                java.time.temporal.ChronoUnit.DAYS.between(
+                        checkIn,
+                        checkOut
                 );
-            }
 
-            date = date.plusDays(1);
+        /*
+         * Every requested night must have an availability record.
+         */
+        if (records.size() != requestedNights) {
+            throw new RoomNotAvailableException(
+                    "Room availability is missing for the requested dates"
+            );
+        }
+
+        boolean unavailable =
+                records.stream()
+                        .anyMatch(record ->
+                                record.getStatus()
+                                        != AvailabilityStatus.AVAILABLE
+                        );
+
+        if (unavailable) {
+            throw new RoomNotAvailableException(
+                    "Room is not available for the requested dates"
+            );
         }
     }
 
@@ -383,34 +389,31 @@ public class BookingServiceImpl implements BookingService {
             LocalDate checkOut
     ) {
 
-        LocalDate date = checkIn;
+        List<RoomAvailability> records =
+                roomAvailabilityRepository
+                        .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                                roomId,
+                                checkIn,
+                                checkOut
+                        );
 
-        while (date.isBefore(checkOut)) {
+        long requestedNights =
+                java.time.temporal.ChronoUnit.DAYS.between(
+                        checkIn,
+                        checkOut
+                );
 
-            final LocalDate currentDate = date;
-
-            RoomAvailability availability =
-                    roomAvailabilityRepository
-                            .findByRoomIdAndDate(
-                                    roomId,
-                                    currentDate
-                            )
-                            .orElseThrow(() ->
-                                    new RoomNotAvailableException(
-                                            "Room availability is missing for "
-                                                    + currentDate
-                                    ));
-
-            availability.setStatus(
-                    AvailabilityStatus.BOOKED
+        if (records.size() != requestedNights) {
+            throw new RoomNotAvailableException(
+                    "Room availability is missing for the requested dates"
             );
-
-            roomAvailabilityRepository.save(
-                    availability
-            );
-
-            date = date.plusDays(1);
         }
+
+        records.forEach(record ->
+                record.setStatus(AvailabilityStatus.BOOKED)
+        );
+
+        roomAvailabilityRepository.saveAll(records);
     }
 
     // =========================================================
@@ -445,24 +448,32 @@ public class BookingServiceImpl implements BookingService {
             LocalDate checkOut
     ) {
 
+        List<Pricing> pricingRecords =
+                pricingRepository
+                        .findByRoomIdAndActiveTrueAndStartDateLessThanAndEndDateGreaterThanOrderByStartDateAsc(
+                                room.getId(),
+                                checkOut,
+                                checkIn
+                        );
+
         BigDecimal totalAmount = BigDecimal.ZERO;
 
         LocalDate date = checkIn;
 
         while (date.isBefore(checkOut)) {
 
-            BigDecimal nightlyPrice =
-                    pricingRepository
-                            .findFirstByRoomIdAndStartDateLessThanEqualAndEndDateGreaterThanAndActiveTrue(
-                                    room.getId(),
-                                    date,
-                                    date
-                            )
-                            .map(Pricing::getPricePerNight)
-                            .orElse(room.getPricePerNight());
+            final LocalDate currentDate = date;
 
-            totalAmount =
-                    totalAmount.add(nightlyPrice);
+            BigDecimal nightlyPrice = pricingRecords.stream()
+                    .filter(pricing ->
+                            !currentDate.isBefore(pricing.getStartDate())
+                                    && currentDate.isBefore(pricing.getEndDate())
+                    )
+                    .map(Pricing::getPricePerNight)
+                    .findFirst()
+                    .orElse(room.getPricePerNight());
+
+            totalAmount = totalAmount.add(nightlyPrice);
 
             date = date.plusDays(1);
         }
