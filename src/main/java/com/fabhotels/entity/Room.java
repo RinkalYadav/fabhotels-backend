@@ -62,7 +62,8 @@ public class Room {
     @OneToMany(
             mappedBy = "room",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
     )
     private List<RoomAvailability> availabilities = new ArrayList<>();
 }

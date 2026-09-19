@@ -18,6 +18,13 @@ public interface PricingRepository extends JpaRepository<Pricing, Long> {
             LocalDate date2
     );
 
+    List<Pricing>
+    findByRoomIdAndActiveTrueAndStartDateLessThanAndEndDateGreaterThanOrderByStartDateAsc(
+            Long roomId,
+            LocalDate checkOut,
+            LocalDate checkIn
+    );
+
     boolean existsByRoomIdAndActiveTrueAndStartDateLessThanAndEndDateGreaterThan(
             Long roomId,
             LocalDate endDate,

@@ -27,6 +27,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,20 +87,35 @@ class CancellationServiceImplTest {
         when(paymentRepository.findByBookingId(101L))
                 .thenReturn(Optional.empty());
 
-        mockAvailability(
-                LocalDate.now().plusDays(5),
-                AvailabilityStatus.BOOKED
-        );
+        RoomAvailability availability1 =
+                createAvailability(
+                        booking.getCheckIn(),
+                        AvailabilityStatus.BOOKED
+                );
 
-        mockAvailability(
-                LocalDate.now().plusDays(6),
-                AvailabilityStatus.BOOKED
-        );
+        RoomAvailability availability2 =
+                createAvailability(
+                        booking.getCheckIn().plusDays(1),
+                        AvailabilityStatus.BOOKED
+                );
 
-        mockAvailability(
-                LocalDate.now().plusDays(7),
-                AvailabilityStatus.BOOKED
-        );
+        RoomAvailability availability3 =
+                createAvailability(
+                        booking.getCheckIn().plusDays(2),
+                        AvailabilityStatus.BOOKED
+                );
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        10L,
+                        booking.getCheckIn(),
+                        booking.getCheckOut()
+                ))
+                .thenReturn(List.of(
+                        availability1,
+                        availability2,
+                        availability3
+                ));
 
         when(bookingRepository.save(any(Booking.class)))
                 .thenAnswer(invocation ->
@@ -115,13 +132,19 @@ class CancellationServiceImplTest {
                         request
                 );
 
-        assertEquals(101L, response.getBookingId());
+        assertEquals(
+                101L,
+                response.getBookingId()
+        );
+
         assertEquals(
                 BookingStatus.CANCELLED,
                 response.getStatus()
         );
 
-        assertNotNull(response.getCancelledAt());
+        assertNotNull(
+                response.getCancelledAt()
+        );
 
         assertEquals(
                 BigDecimal.ZERO,
@@ -138,10 +161,26 @@ class CancellationServiceImplTest {
                 booking.getStatus()
         );
 
-        verify(bookingRepository).save(booking);
+        assertEquals(
+                AvailabilityStatus.AVAILABLE,
+                availability1.getStatus()
+        );
 
-        verify(roomAvailabilityRepository, times(3))
-                .save(any(RoomAvailability.class));
+        assertEquals(
+                AvailabilityStatus.AVAILABLE,
+                availability2.getStatus()
+        );
+
+        assertEquals(
+                AvailabilityStatus.AVAILABLE,
+                availability3.getStatus()
+        );
+
+        verify(bookingRepository)
+                .save(booking);
+
+        verify(roomAvailabilityRepository)
+                .saveAll(anyList());
     }
 
     @Test
@@ -167,7 +206,9 @@ class CancellationServiceImplTest {
     @Test
     void cancelBooking_shouldThrowWhenAlreadyCancelled() {
 
-        booking.setStatus(BookingStatus.CANCELLED);
+        booking.setStatus(
+                BookingStatus.CANCELLED
+        );
 
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.of(booking));
@@ -179,12 +220,19 @@ class CancellationServiceImplTest {
                         new CancelBookingRequest()
                 )
         );
+
+        verifyNoInteractions(
+                paymentRepository,
+                roomAvailabilityRepository
+        );
     }
 
     @Test
     void cancelBooking_shouldThrowWhenCheckInIsToday() {
 
-        booking.setCheckIn(LocalDate.now());
+        booking.setCheckIn(
+                LocalDate.now()
+        );
 
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.of(booking));
@@ -195,6 +243,11 @@ class CancellationServiceImplTest {
                         101L,
                         new CancelBookingRequest()
                 )
+        );
+
+        verifyNoInteractions(
+                paymentRepository,
+                roomAvailabilityRepository
         );
     }
 
@@ -215,6 +268,11 @@ class CancellationServiceImplTest {
                         new CancelBookingRequest()
                 )
         );
+
+        verifyNoInteractions(
+                paymentRepository,
+                roomAvailabilityRepository
+        );
     }
 
     @Test
@@ -227,7 +285,8 @@ class CancellationServiceImplTest {
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.of(booking));
 
-        Payment payment = createSuccessfulPayment();
+        Payment payment =
+                createSuccessfulPayment();
 
         when(paymentRepository.findByBookingId(101L))
                 .thenReturn(Optional.of(payment));
@@ -248,6 +307,9 @@ class CancellationServiceImplTest {
                 new BigDecimal("6000.00"),
                 response.getRefundAmount()
         );
+
+        verify(roomAvailabilityRepository)
+                .saveAll(anyList());
     }
 
     @Test
@@ -260,7 +322,8 @@ class CancellationServiceImplTest {
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.of(booking));
 
-        Payment payment = createSuccessfulPayment();
+        Payment payment =
+                createSuccessfulPayment();
 
         when(paymentRepository.findByBookingId(101L))
                 .thenReturn(Optional.of(payment));
@@ -283,7 +346,8 @@ class CancellationServiceImplTest {
                         .compareTo(response.getRefundAmount())
         );
 
-
+        verify(roomAvailabilityRepository)
+                .saveAll(anyList());
     }
 
     @Test
@@ -331,6 +395,9 @@ class CancellationServiceImplTest {
                 BigDecimal.ZERO,
                 response.getRefundAmount()
         );
+
+        verify(roomAvailabilityRepository)
+                .saveAll(anyList());
     }
 
     @Test
@@ -370,22 +437,16 @@ class CancellationServiceImplTest {
                 );
 
         when(roomAvailabilityRepository
-                .findByRoomIdAndDate(10L, checkIn))
-                .thenReturn(Optional.of(availability1));
-
-        when(roomAvailabilityRepository
-                .findByRoomIdAndDate(
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
                         10L,
-                        checkIn.plusDays(1)
+                        checkIn,
+                        checkOut
                 ))
-                .thenReturn(Optional.of(availability2));
-
-        when(roomAvailabilityRepository
-                .findByRoomIdAndDate(
-                        10L,
-                        checkIn.plusDays(2)
-                ))
-                .thenReturn(Optional.of(availability3));
+                .thenReturn(List.of(
+                        availability1,
+                        availability2,
+                        availability3
+                ));
 
         when(bookingRepository.save(any(Booking.class)))
                 .thenAnswer(invocation ->
@@ -411,10 +472,8 @@ class CancellationServiceImplTest {
                 availability3.getStatus()
         );
 
-        verify(
-                roomAvailabilityRepository,
-                times(3)
-        ).save(any(RoomAvailability.class));
+        verify(roomAvailabilityRepository)
+                .saveAll(anyList());
     }
 
     @Test
@@ -426,20 +485,35 @@ class CancellationServiceImplTest {
         when(paymentRepository.findByBookingId(101L))
                 .thenReturn(Optional.empty());
 
-        mockAvailability(
-                LocalDate.now().plusDays(5),
-                AvailabilityStatus.AVAILABLE
-        );
+        RoomAvailability availability1 =
+                createAvailability(
+                        booking.getCheckIn(),
+                        AvailabilityStatus.AVAILABLE
+                );
 
-        mockAvailability(
-                LocalDate.now().plusDays(6),
-                AvailabilityStatus.BOOKED
-        );
+        RoomAvailability availability2 =
+                createAvailability(
+                        booking.getCheckIn().plusDays(1),
+                        AvailabilityStatus.BOOKED
+                );
 
-        mockAvailability(
-                LocalDate.now().plusDays(7),
-                AvailabilityStatus.BOOKED
-        );
+        RoomAvailability availability3 =
+                createAvailability(
+                        booking.getCheckIn().plusDays(2),
+                        AvailabilityStatus.BOOKED
+                );
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        10L,
+                        booking.getCheckIn(),
+                        booking.getCheckOut()
+                ))
+                .thenReturn(List.of(
+                        availability1,
+                        availability2,
+                        availability3
+                ));
 
         when(bookingRepository.save(any(Booking.class)))
                 .thenAnswer(invocation ->
@@ -450,10 +524,23 @@ class CancellationServiceImplTest {
                 new CancelBookingRequest()
         );
 
-        verify(
-                roomAvailabilityRepository,
-                times(2)
-        ).save(any(RoomAvailability.class));
+        assertEquals(
+                AvailabilityStatus.AVAILABLE,
+                availability1.getStatus()
+        );
+
+        assertEquals(
+                AvailabilityStatus.AVAILABLE,
+                availability2.getStatus()
+        );
+
+        assertEquals(
+                AvailabilityStatus.AVAILABLE,
+                availability3.getStatus()
+        );
+
+        verify(roomAvailabilityRepository)
+                .saveAll(anyList());
     }
 
     @Test
@@ -465,10 +552,35 @@ class CancellationServiceImplTest {
         when(paymentRepository.findByBookingId(101L))
                 .thenReturn(Optional.empty());
 
-        mockAvailability(
-                LocalDate.now().plusDays(5),
-                AvailabilityStatus.BLOCKED
-        );
+        RoomAvailability blockedAvailability =
+                createAvailability(
+                        booking.getCheckIn(),
+                        AvailabilityStatus.BLOCKED
+                );
+
+        RoomAvailability bookedAvailability1 =
+                createAvailability(
+                        booking.getCheckIn().plusDays(1),
+                        AvailabilityStatus.BOOKED
+                );
+
+        RoomAvailability bookedAvailability2 =
+                createAvailability(
+                        booking.getCheckIn().plusDays(2),
+                        AvailabilityStatus.BOOKED
+                );
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        10L,
+                        booking.getCheckIn(),
+                        booking.getCheckOut()
+                ))
+                .thenReturn(List.of(
+                        blockedAvailability,
+                        bookedAvailability1,
+                        bookedAvailability2
+                ));
 
         assertThrows(
                 InvalidCancellationException.class,
@@ -482,35 +594,47 @@ class CancellationServiceImplTest {
                 bookingRepository,
                 never()
         ).save(any(Booking.class));
-    }
 
-    private void mockAvailability(
-            LocalDate date,
-            AvailabilityStatus status
-    ) {
-
-        RoomAvailability availability =
-                createAvailability(date, status);
-
-        when(
-                roomAvailabilityRepository
-                        .findByRoomIdAndDate(10L, date)
-        ).thenReturn(Optional.of(availability));
+        verify(
+                roomAvailabilityRepository,
+                never()
+        ).saveAll(anyList());
     }
 
     private void mockBookedAvailabilityForBooking() {
 
-        LocalDate currentDate = booking.getCheckIn();
+        LocalDate checkIn =
+                booking.getCheckIn();
 
-        while (currentDate.isBefore(booking.getCheckOut())) {
+        LocalDate checkOut =
+                booking.getCheckOut();
 
-            mockAvailability(
-                    currentDate,
-                    AvailabilityStatus.BOOKED
+        List<RoomAvailability> records =
+                new ArrayList<>();
+
+        LocalDate currentDate =
+                checkIn;
+
+        while (currentDate.isBefore(checkOut)) {
+
+            records.add(
+                    createAvailability(
+                            currentDate,
+                            AvailabilityStatus.BOOKED
+                    )
             );
 
-            currentDate = currentDate.plusDays(1);
+            currentDate =
+                    currentDate.plusDays(1);
         }
+
+        when(roomAvailabilityRepository
+                .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                        10L,
+                        checkIn,
+                        checkOut
+                ))
+                .thenReturn(records);
     }
 
     private RoomAvailability createAvailability(
@@ -530,22 +654,34 @@ class CancellationServiceImplTest {
 
     private Payment createSuccessfulPayment() {
 
-        Payment payment = new Payment();
+        Payment payment =
+                new Payment();
 
         payment.setId(501L);
+
         payment.setBooking(booking);
+
         payment.setAmount(
                 new BigDecimal("6000.00")
         );
-        payment.setPaymentMethod(PaymentMethod.UPI);
-        payment.setStatus(PaymentStatus.SUCCESS);
+
+        payment.setPaymentMethod(
+                PaymentMethod.UPI
+        );
+
+        payment.setStatus(
+                PaymentStatus.SUCCESS
+        );
+
         payment.setTransactionId(
                 "TXN-20260916-ABC123"
         );
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now =
+                LocalDateTime.now();
 
         payment.setPaidAt(now);
+
         payment.setCreatedAt(now);
 
         return payment;

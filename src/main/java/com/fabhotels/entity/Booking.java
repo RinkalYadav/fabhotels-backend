@@ -8,7 +8,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "booking")
+@Table(
+        name = "booking",
+        indexes = {
+                @Index(
+                        name = "idx_booking_room_status_dates",
+                        columnList = "room_id,status,check_in,check_out"
+                )
+        }
+)
 public class Booking {
 
     @Id

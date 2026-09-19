@@ -25,6 +25,8 @@ import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 public class CancellationServiceImpl implements CancellationService {
@@ -171,30 +173,35 @@ public class CancellationServiceImpl implements CancellationService {
     private void releaseRoomAvailability(Booking booking) {
 
         Long roomId = booking.getRoom().getId();
-
-        LocalDate currentDate = booking.getCheckIn();
+        LocalDate checkIn = booking.getCheckIn();
         LocalDate checkOut = booking.getCheckOut();
 
-        while (currentDate.isBefore(checkOut)) {
+        List<RoomAvailability> records =
+                roomAvailabilityRepository
+                        .findByRoomIdAndDateGreaterThanEqualAndDateLessThanOrderByDateAsc(
+                                roomId,
+                                checkIn,
+                                checkOut
+                        );
 
-            final LocalDate dateToRelease = currentDate;
+        long requestedNights =
+                ChronoUnit.DAYS.between(checkIn, checkOut);
 
-            RoomAvailability availability =
-                    roomAvailabilityRepository
-                            .findByRoomIdAndDate(
-                                    roomId,
-                                    dateToRelease
-                            )
-                            .orElseThrow(() ->
-                                    new InvalidCancellationException(
-                                            "Room availability record missing for date: "
-                                                    + dateToRelease
-                                    )
-                            );
+        /*
+         * Every booked night must have an availability record.
+         */
+        if (records.size() != requestedNights) {
+            throw new InvalidCancellationException(
+                    "Room availability record missing for the booking dates"
+            );
+        }
 
-            /*
-             * Only release dates that are actually BOOKED.
-             */
+        /*
+         * Release only BOOKED nights.
+         * BLOCKED nights cannot be released automatically.
+         */
+        for (RoomAvailability availability : records) {
+
             if (availability.getStatus() ==
                     AvailabilityStatus.BOOKED) {
 
@@ -202,20 +209,19 @@ public class CancellationServiceImpl implements CancellationService {
                         AvailabilityStatus.AVAILABLE
                 );
 
-                roomAvailabilityRepository.save(
-                        availability
-                );
-
             } else if (availability.getStatus() ==
                     AvailabilityStatus.BLOCKED) {
 
                 throw new InvalidCancellationException(
                         "Cannot release blocked room availability for date: "
-                                + dateToRelease
+                                + availability.getDate()
                 );
             }
-
-            currentDate = currentDate.plusDays(1);
         }
+
+        /*
+         * Persist all changed availability records in one operation.
+         */
+        roomAvailabilityRepository.saveAll(records);
     }
 }

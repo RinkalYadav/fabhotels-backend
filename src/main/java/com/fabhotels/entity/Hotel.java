@@ -17,7 +17,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "hotel")
+@Table(
+        name = "hotel",
+        indexes = {
+                @Index(
+                        name = "idx_hotel_city_state",
+                        columnList = "city,state"
+                )
+        }
+)
 public class Hotel {
 
     @Id
@@ -56,7 +64,8 @@ public class Hotel {
     @OneToMany(
             mappedBy = "hotel",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
     )
     private List<Room> rooms = new ArrayList<>();
 
