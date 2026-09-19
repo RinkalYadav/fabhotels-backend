@@ -11,6 +11,7 @@ import com.fabhotels.exception.RoomNotFoundException;
 import com.fabhotels.repository.HotelRepository;
 import com.fabhotels.repository.RoomRepository;
 import com.fabhotels.service.RoomService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,13 @@ public class RoomServiceImpl implements RoomService {
         this.hotelRepository = hotelRepository;
     }
 
+    /**
+     * Create a new room.
+     *
+     * Only HOTEL_ADMIN users are allowed to create rooms.
+     */
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public RoomResponse createRoom(
             Long hotelId,
             CreateRoomRequest request
@@ -69,7 +76,13 @@ public class RoomServiceImpl implements RoomService {
         return mapToResponse(savedRoom);
     }
 
+    /**
+     * Get room details.
+     *
+     * Both CUSTOMER and HOTEL_ADMIN can view room details.
+     */
     @Override
+    @PreAuthorize("hasAnyRole('CUSTOMER', 'HOTEL_ADMIN')")
     @Transactional(readOnly = true)
     public RoomResponse getRoomById(Long roomId) {
 
@@ -81,7 +94,13 @@ public class RoomServiceImpl implements RoomService {
         return mapToResponse(room);
     }
 
+    /**
+     * Get all rooms belonging to a hotel.
+     *
+     * Both CUSTOMER and HOTEL_ADMIN can view rooms.
+     */
     @Override
+    @PreAuthorize("hasAnyRole('CUSTOMER', 'HOTEL_ADMIN')")
     @Transactional(readOnly = true)
     public List<RoomResponse> getRoomsByHotelId(
             Long hotelId
@@ -97,6 +116,9 @@ public class RoomServiceImpl implements RoomService {
                 .toList();
     }
 
+    /**
+     * Convert Room entity to RoomResponse.
+     */
     private RoomResponse mapToResponse(Room room) {
 
         return new RoomResponse(

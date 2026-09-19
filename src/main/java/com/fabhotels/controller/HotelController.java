@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Tag(
         name = "Hotels",
@@ -46,6 +47,7 @@ public class HotelController {
             )
     })
     @PostMapping
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public ResponseEntity<HotelResponse> createHotel(
             @Valid @RequestBody CreateHotelRequest request) {
 

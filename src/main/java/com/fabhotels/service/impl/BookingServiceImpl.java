@@ -19,18 +19,21 @@ import com.fabhotels.repository.PricingRepository;
 import com.fabhotels.repository.RoomAvailabilityRepository;
 import com.fabhotels.repository.RoomRepository;
 import com.fabhotels.service.BookingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class BookingServiceImpl implements BookingService {
+
     private static final Logger log =
             LoggerFactory.getLogger(BookingServiceImpl.class);
 
@@ -42,8 +45,9 @@ public class BookingServiceImpl implements BookingService {
     public BookingServiceImpl(
             BookingRepository bookingRepository,
             RoomRepository roomRepository,
-            RoomAvailabilityRepository roomAvailabilityRepository, PricingRepository pricingRepository) {
-
+            RoomAvailabilityRepository roomAvailabilityRepository,
+            PricingRepository pricingRepository
+    ) {
         this.bookingRepository = bookingRepository;
         this.roomRepository = roomRepository;
         this.roomAvailabilityRepository = roomAvailabilityRepository;
@@ -55,6 +59,7 @@ public class BookingServiceImpl implements BookingService {
     // =========================================================
 
     @Override
+    @PreAuthorize("hasRole('CUSTOMER')")
     @Transactional
     public BookingResponse createBooking(CreateBookingRequest request) {
 
@@ -69,35 +74,52 @@ public class BookingServiceImpl implements BookingService {
         // 1. Validate request
         validateRequest(request);
 
-        // 2. Find room
+        // 2. Get authenticated customer
+        Authentication authentication =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication();
+
+        if (authentication == null
+                || !authentication.isAuthenticated()) {
+
+            throw new IllegalStateException(
+                    "Authenticated customer is required"
+            );
+        }
+
+        String authenticatedEmail =
+                authentication.getName();
+
+        // 3. Find room
         Room room = roomRepository.findById(request.getRoomId())
                 .orElseThrow(() ->
                         new RoomNotFoundException(request.getRoomId()));
 
-        // 3. Validate room status
+        // 4. Validate room status
         validateRoomStatus(room);
 
-        // 4. Validate guest capacity
+        // 5. Validate guest capacity
         validateGuestCapacity(
                 room,
                 request.getNumberOfGuests()
         );
 
-        // 5. Check existing confirmed booking
+        // 6. Check existing confirmed booking
         validateExistingBooking(
                 room.getId(),
                 request.getCheckIn(),
                 request.getCheckOut()
         );
 
-        // 6. Check room availability for every date
+        // 7. Check room availability for every date
         validateRoomAvailability(
                 room.getId(),
                 request.getCheckIn(),
                 request.getCheckOut()
         );
 
-        // 7. Calculate number of nights
+        // 8. Calculate total amount
         BigDecimal totalAmount = calculateTotalAmount(
                 room,
                 request.getCheckIn(),
@@ -108,8 +130,15 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = new Booking();
 
         booking.setRoom(room);
+
+        // Guest name can come from the request.
         booking.setGuestName(request.getGuestName());
-        booking.setGuestEmail(request.getGuestEmail());
+
+        // IMPORTANT:
+        // Never trust guestEmail from the client.
+        // Use the email from the authenticated JWT.
+        booking.setGuestEmail(authenticatedEmail);
+
         booking.setCheckIn(request.getCheckIn());
         booking.setCheckOut(request.getCheckOut());
         booking.setNumberOfGuests(request.getNumberOfGuests());
@@ -119,6 +148,7 @@ public class BookingServiceImpl implements BookingService {
         // 10. Save booking
         Booking savedBooking =
                 bookingRepository.save(booking);
+
         log.info(
                 "Booking created successfully: bookingId={}, roomId={}, totalAmount={}",
                 savedBooking.getId(),
@@ -142,6 +172,9 @@ public class BookingServiceImpl implements BookingService {
     // =========================================================
 
     @Override
+    @PreAuthorize(
+            "hasRole('HOTEL_ADMIN') or @bookingAuthorization.isOwner(#bookingId)"
+    )
     @Transactional(readOnly = true)
     public BookingResponse getBookingById(Long bookingId) {
 
@@ -157,6 +190,7 @@ public class BookingServiceImpl implements BookingService {
     // =========================================================
 
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     @Transactional(readOnly = true)
     public List<BookingResponse> getBookingsByRoom(Long roomId) {
 
@@ -177,7 +211,8 @@ public class BookingServiceImpl implements BookingService {
     // =========================================================
 
     private void validateRequest(
-            CreateBookingRequest request) {
+            CreateBookingRequest request
+    ) {
 
         if (request == null) {
 
@@ -201,13 +236,11 @@ public class BookingServiceImpl implements BookingService {
             );
         }
 
-        if (request.getGuestEmail() == null
-                || request.getGuestEmail().trim().isEmpty()) {
-
-            throw new InvalidBookingDateException(
-                    "Guest email cannot be empty"
-            );
-        }
+        /*
+         * guestEmail is intentionally NOT required anymore.
+         *
+         * It is obtained from the authenticated JWT instead.
+         */
 
         if (request.getCheckIn() == null) {
 
@@ -260,7 +293,8 @@ public class BookingServiceImpl implements BookingService {
 
     private void validateGuestCapacity(
             Room room,
-            Integer numberOfGuests) {
+            Integer numberOfGuests
+    ) {
 
         if (numberOfGuests > room.getCapacity()) {
 
@@ -278,7 +312,8 @@ public class BookingServiceImpl implements BookingService {
     private void validateExistingBooking(
             Long roomId,
             LocalDate checkIn,
-            LocalDate checkOut) {
+            LocalDate checkOut
+    ) {
 
         boolean overlappingBooking =
                 bookingRepository
@@ -304,14 +339,13 @@ public class BookingServiceImpl implements BookingService {
     private void validateRoomAvailability(
             Long roomId,
             LocalDate checkIn,
-            LocalDate checkOut) {
+            LocalDate checkOut
+    ) {
 
         LocalDate date = checkIn;
 
         while (date.isBefore(checkOut)) {
 
-            // Create a final/effectively-final variable
-            // for use inside lambda
             final LocalDate currentDate = date;
 
             RoomAvailability availability =
@@ -346,13 +380,13 @@ public class BookingServiceImpl implements BookingService {
     private void updateRoomAvailability(
             Long roomId,
             LocalDate checkIn,
-            LocalDate checkOut) {
+            LocalDate checkOut
+    ) {
 
         LocalDate date = checkIn;
 
         while (date.isBefore(checkOut)) {
 
-            // Final variable for lambda
             final LocalDate currentDate = date;
 
             RoomAvailability availability =
@@ -384,7 +418,8 @@ public class BookingServiceImpl implements BookingService {
     // =========================================================
 
     private BookingResponse mapToResponse(
-            Booking booking) {
+            Booking booking
+    ) {
 
         return new BookingResponse(
                 booking.getId(),
@@ -400,10 +435,15 @@ public class BookingServiceImpl implements BookingService {
         );
     }
 
+    // =========================================================
+    // CALCULATE TOTAL AMOUNT
+    // =========================================================
+
     private BigDecimal calculateTotalAmount(
             Room room,
             LocalDate checkIn,
-            LocalDate checkOut) {
+            LocalDate checkOut
+    ) {
 
         BigDecimal totalAmount = BigDecimal.ZERO;
 
@@ -421,7 +461,8 @@ public class BookingServiceImpl implements BookingService {
                             .map(Pricing::getPricePerNight)
                             .orElse(room.getPricePerNight());
 
-            totalAmount = totalAmount.add(nightlyPrice);
+            totalAmount =
+                    totalAmount.add(nightlyPrice);
 
             date = date.plusDays(1);
         }

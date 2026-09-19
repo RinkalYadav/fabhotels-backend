@@ -12,6 +12,7 @@ import com.fabhotels.exception.RoomNotFoundException;
 import com.fabhotels.repository.PricingRepository;
 import com.fabhotels.repository.RoomRepository;
 import com.fabhotels.service.PricingService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +34,7 @@ public class PricingServiceImpl implements PricingService {
     }
 
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     @Transactional
     public PricingResponse createPricing(
             Long roomId,
@@ -74,6 +76,7 @@ public class PricingServiceImpl implements PricingService {
     }
 
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     @Transactional(readOnly = true)
     public List<PricingResponse> getPricingByRoom(
             Long roomId) {

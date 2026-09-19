@@ -17,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class HotelServiceImpl implements HotelService {
     // ============================
 
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public HotelResponse createHotel(CreateHotelRequest request) {
 
         Hotel hotel = new Hotel();
@@ -57,7 +59,9 @@ public class HotelServiceImpl implements HotelService {
     // GET HOTEL BY ID
     // ============================
 
+
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public HotelResponse getHotelById(Long id) {
 
         Hotel hotel = hotelRepository.findById(id)
@@ -71,6 +75,7 @@ public class HotelServiceImpl implements HotelService {
     // ============================
 
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public List<HotelResponse> getAllHotels() {
 
         return hotelRepository.findAll()
@@ -84,6 +89,7 @@ public class HotelServiceImpl implements HotelService {
     // ============================
 
     @Override
+    @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public HotelSearchPageResponse searchHotels(
             HotelSearchRequest request) {
 

@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -40,6 +41,9 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    @PreAuthorize(
+            "hasRole('CUSTOMER') and @bookingAuthorization.isOwner(#request.bookingId)"
+    )
     @Transactional
     public PaymentResponse createPayment(
             CreatePaymentRequest request) {
