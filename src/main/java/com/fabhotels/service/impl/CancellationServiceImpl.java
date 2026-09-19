@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Service
 public class CancellationServiceImpl implements CancellationService {
@@ -45,6 +46,9 @@ public class CancellationServiceImpl implements CancellationService {
     }
 
     @Override
+    @PreAuthorize(
+            "hasRole('CUSTOMER') and @bookingAuthorization.isOwner(#bookingId)"
+    )
     @Transactional
     public CancellationResponse cancelBooking(
             Long bookingId,

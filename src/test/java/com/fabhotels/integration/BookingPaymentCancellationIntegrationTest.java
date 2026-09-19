@@ -21,14 +21,20 @@ import com.fabhotels.repository.RoomRepository;
 import com.fabhotels.service.BookingService;
 import com.fabhotels.service.CancellationService;
 import com.fabhotels.service.PaymentService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -54,6 +60,30 @@ class BookingPaymentCancellationIntegrationTest {
 
     @Autowired
     private RoomAvailabilityRepository availabilityRepository;
+
+    @BeforeEach
+    void setUpSecurityContext() {
+
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(
+                        "integration@test.com",
+                        null,
+                        List.of(
+                                new SimpleGrantedAuthority(
+                                        "ROLE_CUSTOMER"
+                                )
+                        )
+                );
+
+        SecurityContextHolder
+                .getContext()
+                .setAuthentication(authentication);
+    }
+
+    @AfterEach
+    void clearSecurityContext() {
+        SecurityContextHolder.clearContext();
+    }
 
     @Test
     void bookingPaymentAndCancellation_shouldCompleteFullFlow() {
