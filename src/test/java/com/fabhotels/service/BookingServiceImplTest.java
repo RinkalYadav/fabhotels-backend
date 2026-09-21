@@ -119,7 +119,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         when(bookingRepository
@@ -173,7 +173,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         when(bookingRepository
@@ -228,7 +228,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         /*
@@ -270,7 +270,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         when(bookingRepository
@@ -326,7 +326,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         when(bookingRepository
@@ -382,7 +382,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         when(bookingRepository
@@ -434,7 +434,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.empty());
 
         assertThrows(
@@ -448,7 +448,7 @@ class BookingServiceImplTest {
 
         CreateBookingRequest request = createRequest();
 
-        when(roomRepository.findById(10L))
+        when(roomRepository.findByIdForUpdate(10L))
                 .thenReturn(Optional.of(room));
 
         when(bookingRepository

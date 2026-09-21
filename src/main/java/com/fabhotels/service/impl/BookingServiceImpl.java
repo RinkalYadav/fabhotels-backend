@@ -92,7 +92,7 @@ public class BookingServiceImpl implements BookingService {
                 authentication.getName();
 
         // 3. Find room
-        Room room = roomRepository.findById(request.getRoomId())
+        Room room = roomRepository.findByIdForUpdate(request.getRoomId())
                 .orElseThrow(() ->
                         new RoomNotFoundException(request.getRoomId()));
 
