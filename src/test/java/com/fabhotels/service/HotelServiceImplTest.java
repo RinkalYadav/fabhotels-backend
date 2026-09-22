@@ -26,6 +26,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @ExtendWith(MockitoExtension.class)
 class HotelServiceImplTest {
@@ -384,69 +386,25 @@ class HotelServiceImplTest {
         verifyNoInteractions(hotelRepository);
     }
 
-    @Test
-    void searchHotels_withZeroSize_shouldThrowException() {
+    @ParameterizedTest
+    @CsvSource({
+            "0, 0, 'id', 'asc'",
+            "0, 101, 'id', 'asc'",
+            "0, 10, 'description', 'asc'",
+            "0, 10, 'id', 'random'"
+    })
+    void searchHotels_withInvalidParameters_shouldThrowException(
+            int page,
+            int size,
+            String sortBy,
+            String sortDirection) {
 
         HotelSearchRequest searchRequest = new HotelSearchRequest();
 
-        searchRequest.setPage(0);
-        searchRequest.setSize(0);
-        searchRequest.setSortBy("id");
-        searchRequest.setSortDirection("asc");
-
-        assertThrows(
-                InvalidSearchParameterException.class,
-                () -> hotelService.searchHotels(searchRequest)
-        );
-
-        verifyNoInteractions(hotelRepository);
-    }
-
-    @Test
-    void searchHotels_withSizeGreaterThan100_shouldThrowException() {
-
-        HotelSearchRequest searchRequest = new HotelSearchRequest();
-
-        searchRequest.setPage(0);
-        searchRequest.setSize(101);
-        searchRequest.setSortBy("id");
-        searchRequest.setSortDirection("asc");
-
-        assertThrows(
-                InvalidSearchParameterException.class,
-                () -> hotelService.searchHotels(searchRequest)
-        );
-
-        verifyNoInteractions(hotelRepository);
-    }
-
-    @Test
-    void searchHotels_withInvalidSortField_shouldThrowException() {
-
-        HotelSearchRequest searchRequest = new HotelSearchRequest();
-
-        searchRequest.setPage(0);
-        searchRequest.setSize(10);
-        searchRequest.setSortBy("description");
-        searchRequest.setSortDirection("asc");
-
-        assertThrows(
-                InvalidSearchParameterException.class,
-                () -> hotelService.searchHotels(searchRequest)
-        );
-
-        verifyNoInteractions(hotelRepository);
-    }
-
-    @Test
-    void searchHotels_withInvalidSortDirection_shouldThrowException() {
-
-        HotelSearchRequest searchRequest = new HotelSearchRequest();
-
-        searchRequest.setPage(0);
-        searchRequest.setSize(10);
-        searchRequest.setSortBy("id");
-        searchRequest.setSortDirection("random");
+        searchRequest.setPage(page);
+        searchRequest.setSize(size);
+        searchRequest.setSortBy(sortBy);
+        searchRequest.setSortDirection(sortDirection);
 
         assertThrows(
                 InvalidSearchParameterException.class,

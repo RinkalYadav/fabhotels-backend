@@ -12,6 +12,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,6 +28,9 @@ import java.util.Arrays;
 public class SecurityConfig {
 
     private final SecurityErrorHandler securityErrorHandler;
+
+    private static final String HOTEL_API_PATTERN = "/api/hotels/**";
+    private static final String HOTEL_ADMIN_ROLE = "HOTEL_ADMIN";
 
     public SecurityConfig(
             SecurityErrorHandler securityErrorHandler
@@ -48,15 +52,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(
+    SecurityFilterChain securityFilterChain(
             HttpSecurity http,
             JwtAuthenticationFilter jwtAuthenticationFilter
-    ) throws Exception {
+    ) {
 
         http
-                .csrf(csrf ->
-                        csrf.disable()
-                )
+                .csrf(AbstractHttpConfigurer::disable)
 
                 .cors(cors ->
                         cors.configurationSource(
@@ -109,18 +111,18 @@ public class SecurityConfig {
                         // Hotel management
                         .requestMatchers(
                                 HttpMethod.POST,
-                                "/api/hotels/**"
-                        ).hasRole("HOTEL_ADMIN")
+                                HOTEL_API_PATTERN
+                        ).hasRole(HOTEL_ADMIN_ROLE)
 
                         .requestMatchers(
                                 HttpMethod.PUT,
-                                "/api/hotels/**"
-                        ).hasRole("HOTEL_ADMIN")
+                                HOTEL_API_PATTERN
+                        ).hasRole(HOTEL_ADMIN_ROLE)
 
                         .requestMatchers(
                                 HttpMethod.DELETE,
-                                "/api/hotels/**"
-                        ).hasRole("HOTEL_ADMIN")
+                                HOTEL_API_PATTERN
+                        ).hasRole(HOTEL_ADMIN_ROLE)
 
                         // Everything else
                         .anyRequest().authenticated()
@@ -137,8 +139,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration configuration
-    ) throws Exception {
-
+    ) {
         return configuration.getAuthenticationManager();
     }
 

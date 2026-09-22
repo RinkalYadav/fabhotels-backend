@@ -30,8 +30,7 @@ public class CreatePricingRequest {
     )
     private BigDecimal pricePerNight;
 
-    public CreatePricingRequest() {
-    }
+
 
     public LocalDate getStartDate() {
         return startDate;

@@ -33,24 +33,24 @@ public class PricingController {
             summary = "Create room pricing",
             description = "Creates a dynamic pricing period for a room."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "201",
                     description = "Pricing created successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid pricing data or date range"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
-            ),
+            )
             @ApiResponse(
                     responseCode = "409",
                     description = "Pricing period overlaps with an existing active pricing period"
             )
-    })
+
     @PostMapping("/{roomId}/pricing")
     public ResponseEntity<PricingResponse> createPricing(
 
@@ -81,16 +81,16 @@ public class PricingController {
             summary = "Get pricing by room",
             description = "Returns all pricing periods configured for a room."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Pricing records retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
             )
-    })
+
     @GetMapping("/{roomId}/pricing")
     public ResponseEntity<List<PricingResponse>> getPricingByRoom(
 
@@ -110,16 +110,16 @@ public class PricingController {
             summary = "Get pricing for a date",
             description = "Returns the active pricing applicable to a room for the specified date."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Pricing retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Pricing not found for the specified room and date"
             )
-    })
+
     @GetMapping("/{roomId}/pricing/check")
     public ResponseEntity<PricingResponse> getPricingForDate(
 

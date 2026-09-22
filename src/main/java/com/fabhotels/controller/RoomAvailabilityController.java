@@ -37,24 +37,24 @@ public class RoomAvailabilityController {
             summary = "Create room availability",
             description = "Creates an availability record for a room on a specific date."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "201",
                     description = "Availability created successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid availability data"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
-            ),
+            )
             @ApiResponse(
                     responseCode = "409",
                     description = "Availability already exists for the room and date"
             )
-    })
+
     @PostMapping("/{roomId}/availability")
     public ResponseEntity<RoomAvailabilityResponse> createAvailability(
 
@@ -85,16 +85,16 @@ public class RoomAvailabilityController {
             summary = "Get room availability",
             description = "Returns all availability records for the specified room."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Availability records retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
             )
-    })
+
     @GetMapping("/{roomId}/availability")
     public ResponseEntity<List<RoomAvailabilityResponse>> getAvailability(
 
@@ -114,20 +114,20 @@ public class RoomAvailabilityController {
             summary = "Get room availability by date range",
             description = "Returns availability records between the specified start and end dates."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Availability records retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid date range"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
             )
-    })
+
     @GetMapping("/{roomId}/availability/range")
     public ResponseEntity<List<RoomAvailabilityResponse>>
     getAvailabilityByDateRange(
@@ -170,20 +170,20 @@ public class RoomAvailabilityController {
             summary = "Check room availability",
             description = "Checks whether the room is available for all nights between check-in and check-out."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Availability check completed successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid check-in or check-out dates"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
             )
-    })
+
     @GetMapping("/{roomId}/availability/check")
     public ResponseEntity<RoomAvailabilityCheckResponse>
     checkAvailability(

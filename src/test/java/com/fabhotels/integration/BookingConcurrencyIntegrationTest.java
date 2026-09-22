@@ -100,16 +100,16 @@ class BookingConcurrencyIntegrationTest {
 
         while (date.isBefore(checkOut)) {
 
-            RoomAvailability record =
+            RoomAvailability roomAvailability =
                     new RoomAvailability();
 
-            record.setRoom(room);
-            record.setDate(date);
-            record.setStatus(
+            roomAvailability.setRoom(room);
+            roomAvailability.setDate(date);
+            roomAvailability.setStatus(
                     AvailabilityStatus.AVAILABLE
             );
 
-            availability.add(record);
+            availability.add(roomAvailability);
 
             date = date.plusDays(1);
         }
@@ -205,8 +205,8 @@ class BookingConcurrencyIntegrationTest {
 
         assertTrue(
                 availability.stream()
-                        .allMatch(record ->
-                                record.getStatus()
+                        .allMatch(roomAvailability ->
+                                roomAvailability.getStatus()
                                         == AvailabilityStatus.BOOKED)
         );
     }

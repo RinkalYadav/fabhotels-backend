@@ -54,8 +54,6 @@ public class HotelSearchRequest {
     )
     private String sortDirection = "asc";
 
-    public HotelSearchRequest() {
-    }
 
     public String getCity() {
         return city;

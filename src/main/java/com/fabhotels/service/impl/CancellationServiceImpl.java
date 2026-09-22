@@ -27,6 +27,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 @Service
 public class CancellationServiceImpl implements CancellationService {
@@ -147,11 +149,15 @@ public class CancellationServiceImpl implements CancellationService {
             return BigDecimal.ZERO;
         }
 
-        LocalDateTime checkInDateTime =
-                booking.getCheckIn().atStartOfDay();
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        ZonedDateTime nowZoned = now.atZone(zoneId);
+
+        ZonedDateTime checkInDateTime =
+                booking.getCheckIn().atStartOfDay(zoneId);
 
         long hoursUntilCheckIn =
-                Duration.between(now, checkInDateTime).toHours();
+                Duration.between(nowZoned, checkInDateTime).toHours();
 
         BigDecimal paidAmount = payment.getAmount();
 

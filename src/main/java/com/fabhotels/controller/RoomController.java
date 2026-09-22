@@ -40,24 +40,24 @@ public class RoomController {
             summary = "Create a room",
             description = "Creates a new room for the specified hotel."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "201",
                     description = "Room created successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid room data"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Hotel not found"
-            ),
+            )
             @ApiResponse(
                     responseCode = "409",
                     description = "Room already exists for the hotel"
             )
-    })
+
     @PostMapping("/hotels/{hotelId}/rooms")
     public ResponseEntity<RoomResponse> createRoom(
 
@@ -86,16 +86,16 @@ public class RoomController {
             summary = "Get room by ID",
             description = "Returns the details of a room using its unique ID."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Room retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
             )
-    })
+
     @GetMapping("/rooms/{roomId}")
     public ResponseEntity<RoomResponse> getRoomById(
 
@@ -115,16 +115,16 @@ public class RoomController {
             summary = "Get rooms by hotel",
             description = "Returns all rooms belonging to the specified hotel."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Rooms retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Hotel not found"
             )
-    })
+
     @GetMapping("/hotels/{hotelId}/rooms")
     public ResponseEntity<List<RoomResponse>> getRoomsByHotelId(
 
@@ -144,16 +144,16 @@ public class RoomController {
             summary = "Get bookings by room",
             description = "Returns all bookings associated with the specified room."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Bookings retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room not found"
             )
-    })
+
     @GetMapping("/{roomId}/bookings")
     public ResponseEntity<List<BookingResponse>> getBookingsByRoom(
 

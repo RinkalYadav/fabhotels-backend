@@ -30,9 +30,6 @@ public class CreatePaymentRequest {
     )
     private PaymentMethod paymentMethod;
 
-    public CreatePaymentRequest() {
-    }
-
     public Long getBookingId() {
         return bookingId;
     }

@@ -367,8 +367,8 @@ public class BookingServiceImpl implements BookingService {
 
         boolean unavailable =
                 records.stream()
-                        .anyMatch(record ->
-                                record.getStatus()
+                        .anyMatch(availability ->
+                                availability.getStatus()
                                         != AvailabilityStatus.AVAILABLE
                         );
 
@@ -409,8 +409,8 @@ public class BookingServiceImpl implements BookingService {
             );
         }
 
-        records.forEach(record ->
-                record.setStatus(AvailabilityStatus.BOOKED)
+        records.forEach(availability->
+                availability.setStatus(AvailabilityStatus.BOOKED)
         );
 
         roomAvailabilityRepository.saveAll(records);

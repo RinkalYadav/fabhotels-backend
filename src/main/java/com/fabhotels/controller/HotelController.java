@@ -36,16 +36,16 @@ public class HotelController {
             summary = "Create a hotel",
             description = "Creates a new hotel using the provided hotel details."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "201",
                     description = "Hotel created successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid hotel data"
             )
-    })
+
     @PostMapping
     @PreAuthorize("hasRole('HOTEL_ADMIN')")
     public ResponseEntity<HotelResponse> createHotel(
@@ -62,16 +62,16 @@ public class HotelController {
             summary = "Get hotel by ID",
             description = "Returns the details of a hotel using its unique ID."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Hotel retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Hotel not found"
             )
-    })
+
     @GetMapping("/{id}")
     public ResponseEntity<HotelResponse> getHotelById(
             @Parameter(
@@ -106,16 +106,16 @@ public class HotelController {
             summary = "Search hotels",
             description = "Searches hotels using optional city, state, and active status filters with pagination and sorting."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Hotel search completed successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid pagination or sorting parameters"
             )
-    })
+
     @GetMapping("/search")
     public ResponseEntity<HotelSearchPageResponse> searchHotels(
 

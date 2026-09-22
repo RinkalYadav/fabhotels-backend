@@ -30,24 +30,24 @@ public class PaymentController {
             summary = "Create a payment",
             description = "Creates a successful payment for a confirmed booking."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "201",
                     description = "Payment created successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid payment amount or booking cannot be paid"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Booking not found"
-            ),
+            )
             @ApiResponse(
                     responseCode = "409",
                     description = "Payment already exists for the booking"
             )
-    })
+
     @PostMapping
     public ResponseEntity<PaymentResponse> createPayment(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
@@ -65,16 +65,16 @@ public class PaymentController {
             summary = "Get payment by ID",
             description = "Returns payment details using the unique payment ID."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Payment retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Payment not found"
             )
-    })
+
     @GetMapping("/{paymentId}")
     public ResponseEntity<PaymentResponse> getPaymentById(
 
