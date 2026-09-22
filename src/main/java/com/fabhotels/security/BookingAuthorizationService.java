@@ -1,12 +1,11 @@
 package com.fabhotels.security;
-
+import org.springframework.stereotype.Service;
 import com.fabhotels.entity.Booking;
 import com.fabhotels.repository.BookingRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 
-@Component("bookingAuthorization")
+@Service("bookingAuthorization")
 public class BookingAuthorizationService {
 
     private final BookingRepository bookingRepository;

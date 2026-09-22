@@ -28,16 +28,16 @@ public class BookingPaymentController {
             summary = "Get payment by booking ID",
             description = "Returns payment details associated with the specified booking."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Payment retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Payment not found for the specified booking"
             )
-    })
+
     @GetMapping("/{bookingId}/payment")
     public ResponseEntity<PaymentResponse> getPaymentByBookingId(
 

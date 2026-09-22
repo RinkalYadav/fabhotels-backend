@@ -189,11 +189,12 @@ class CancellationServiceImplTest {
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.empty());
 
+
         assertThrows(
                 BookingNotFoundException.class,
                 () -> cancellationService.cancelBooking(
                         101L,
-                        new CancelBookingRequest()
+                        null
                 )
         );
 
@@ -217,7 +218,7 @@ class CancellationServiceImplTest {
                 BookingAlreadyCancelledException.class,
                 () -> cancellationService.cancelBooking(
                         101L,
-                        new CancelBookingRequest()
+                        null
                 )
         );
 
@@ -237,11 +238,13 @@ class CancellationServiceImplTest {
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.of(booking));
 
+        CancelBookingRequest request = new CancelBookingRequest();
+
         assertThrows(
                 InvalidCancellationException.class,
                 () -> cancellationService.cancelBooking(
                         101L,
-                        new CancelBookingRequest()
+                        request
                 )
         );
 
@@ -261,11 +264,13 @@ class CancellationServiceImplTest {
         when(bookingRepository.findById(101L))
                 .thenReturn(Optional.of(booking));
 
+        CancelBookingRequest request = new CancelBookingRequest();
+
         assertThrows(
                 InvalidCancellationException.class,
                 () -> cancellationService.cancelBooking(
                         101L,
-                        new CancelBookingRequest()
+                        request
                 )
         );
 
@@ -582,14 +587,15 @@ class CancellationServiceImplTest {
                         bookedAvailability2
                 ));
 
+        CancelBookingRequest request = new CancelBookingRequest();
+
         assertThrows(
                 InvalidCancellationException.class,
                 () -> cancellationService.cancelBooking(
                         101L,
-                        new CancelBookingRequest()
+                        request
                 )
         );
-
         verify(
                 bookingRepository,
                 never()

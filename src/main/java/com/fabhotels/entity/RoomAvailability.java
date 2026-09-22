@@ -41,8 +41,6 @@ public class RoomAvailability {
     )
     private AvailabilityStatus status;
 
-    public RoomAvailability() {
-    }
 
     public Long getId() {
         return id;

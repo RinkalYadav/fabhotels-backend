@@ -50,8 +50,7 @@ public class CreateBookingRequest {
     )
     private Integer numberOfGuests;
 
-    public CreateBookingRequest() {
-    }
+
 
     public Long getRoomId() {
         return roomId;

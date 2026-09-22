@@ -30,24 +30,24 @@ public class BookingController {
             summary = "Create a booking",
             description = "Creates a new hotel room booking after validating room availability, guest capacity, booking dates, and pricing."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "201",
                     description = "Booking created successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid booking request, dates, guest count, or room availability"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Room or required resource not found"
-            ),
+            )
             @ApiResponse(
                     responseCode = "409",
                     description = "Room is already booked for the requested dates"
             )
-    })
+
     @PostMapping
     public ResponseEntity<BookingResponse> createBooking(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
@@ -65,16 +65,16 @@ public class BookingController {
             summary = "Get booking by ID",
             description = "Returns the booking details for the specified booking ID."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Booking retrieved successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Booking not found"
             )
-    })
+
     @GetMapping("/{bookingId}")
     public ResponseEntity<BookingResponse> getBookingById(
             @Parameter(

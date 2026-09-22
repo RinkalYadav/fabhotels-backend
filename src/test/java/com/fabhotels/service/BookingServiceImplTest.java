@@ -68,7 +68,9 @@ class BookingServiceImplTest {
             LocalDate.of(2035, 1, 13);
 
     @BeforeEach
-    void setUpSecurityContext() {
+    void setUp() {
+
+        SecurityContextHolder.clearContext();
 
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(
@@ -81,10 +83,6 @@ class BookingServiceImplTest {
 
         SecurityContextHolder.getContext()
                 .setAuthentication(authentication);
-    }
-
-    @BeforeEach
-    void setUp() {
 
         hotel = new Hotel();
 
@@ -110,7 +108,6 @@ class BookingServiceImplTest {
 
     @AfterEach
     void clearSecurityContext() {
-
         SecurityContextHolder.clearContext();
     }
 

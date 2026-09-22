@@ -51,8 +51,6 @@ public class CreateRoomRequest {
     )
     private Integer capacity;
 
-    public CreateRoomRequest() {
-    }
 
     public String getRoomNumber() {
         return roomNumber;

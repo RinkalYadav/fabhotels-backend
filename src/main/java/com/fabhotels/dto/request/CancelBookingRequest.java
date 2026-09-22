@@ -11,9 +11,6 @@ public class CancelBookingRequest {
     )
     private String reason;
 
-    public CancelBookingRequest() {
-    }
-
     public String getReason() {
         return reason;
     }

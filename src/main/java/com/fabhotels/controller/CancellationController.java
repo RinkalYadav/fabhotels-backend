@@ -30,24 +30,24 @@ public class CancellationController {
             summary = "Cancel a booking",
             description = "Cancels a confirmed booking, releases the room availability, and calculates the applicable refund amount based on the cancellation time."
     )
-    @ApiResponses({
+
             @ApiResponse(
                     responseCode = "200",
                     description = "Booking cancelled successfully"
-            ),
+            )
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid cancellation request or booking cannot be cancelled"
-            ),
+            )
             @ApiResponse(
                     responseCode = "404",
                     description = "Booking or required resource not found"
-            ),
+            )
             @ApiResponse(
                     responseCode = "409",
                     description = "Booking has already been cancelled"
             )
-    })
+
     @PostMapping("/{bookingId}/cancel")
     public ResponseEntity<CancellationResponse> cancelBooking(
 

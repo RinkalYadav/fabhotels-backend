@@ -25,9 +25,6 @@ public class CreateRoomAvailabilityRequest {
     )
     private AvailabilityStatus status;
 
-    public CreateRoomAvailabilityRequest() {
-    }
-
     public LocalDate getDate() {
         return date;
     }

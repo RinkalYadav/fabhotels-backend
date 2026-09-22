@@ -105,3 +105,57 @@ WHERE room_id = 1
   AND status = 'CONFIRMED'
   AND check_in < '2035-01-12'
   AND check_out > '2035-01-10';
+
+## FAB-120 — Code Quality & Static Analysis
+
+Code quality and static analysis were reviewed using SonarQube to improve reliability, maintainability, security, and test quality.
+
+### Static Analysis
+
+- SonarQube configured for the FabHotels Backend.
+- Reviewed reliability issues and code smells.
+- Reviewed security vulnerabilities and security hotspots.
+- Reviewed duplicate code.
+- Reviewed test-code maintainability issues.
+- Refactored important code-quality findings without blindly suppressing warnings.
+
+### Security Review
+
+- JWT authentication and authorization reviewed.
+- Password handling reviewed.
+- Sensitive information is not logged.
+- JWT secrets are provided through environment configuration.
+- CORS and security configuration reviewed.
+- CSRF configuration reviewed for the stateless JWT architecture.
+- Security hotspot related to CSRF was reviewed and accepted with documented justification.
+
+### Code Quality Improvements
+
+- Removed unnecessary declarations and imports.
+- Reduced duplicated test code using parameterized tests.
+- Improved exception-test structure.
+- Improved timezone handling in cancellation logic.
+- Removed unnecessary checked exceptions.
+- Replaced duplicated security configuration literals with constants.
+- Reviewed DTO and service-layer maintainability issues.
+- Reviewed logging and exception handling.
+
+### Test Coverage
+
+SonarQube analysis was used to review test coverage across the application.
+
+Current analysis:
+
+- Quality Gate: **Passed**
+- Security Rating: **A**
+- Reliability Rating: **A**
+- Maintainability Rating: **A**
+- Test Coverage: **78.2%**
+- Duplications: **1.7%**
+
+### Verification
+
+The project was verified using:
+
+```bash
+mvn clean test

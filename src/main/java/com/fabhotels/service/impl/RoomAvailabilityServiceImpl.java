@@ -157,10 +157,9 @@ public class RoomAvailabilityServiceImpl
          * the room is unavailable.
          */
         boolean unavailable = records.stream()
-                .anyMatch(record ->
-                        record.getStatus() == AvailabilityStatus.BOOKED
-                                || record.getStatus()
-                                == AvailabilityStatus.BLOCKED
+                .anyMatch(availability ->
+                        availability.getStatus() == AvailabilityStatus.BOOKED
+                                || availability.getStatus() == AvailabilityStatus.BLOCKED
                 );
 
         /*
@@ -174,8 +173,8 @@ public class RoomAvailabilityServiceImpl
                 );
 
         long availableNights = records.stream()
-                .filter(record ->
-                        record.getStatus()
+                .filter(availability ->
+                        availability.getStatus()
                                 == AvailabilityStatus.AVAILABLE
                 )
                 .count();
